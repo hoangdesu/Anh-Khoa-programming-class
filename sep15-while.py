@@ -46,8 +46,10 @@
 
 # allow to user attempt 5 times
 
-Login failed. You have 3 more attempts
+# Login failed. You have 3 more attempts
 
-Login failed. You have 1 more attempt
+# Login failed. You have 1 more attempt
 
-Login failed. Your account has been locked -> quit the loop
+# Login failed. Your account has been locked -> quit the loop
+
+# int(input('Enter a number: '))

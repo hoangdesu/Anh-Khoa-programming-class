@@ -31,9 +31,9 @@
     
 # print(f'Correct! You got it in {attempt} attempts')
 
-HW:
-allow the user to keep entering a number
-multiply them all up
-until user enters 0, stop the loop and display the output
-following the template: 
-'Total = 4 x 6 x 2 = 48'
+# HW:
+# allow the user to keep entering a number
+# multiply them all up
+# until user enters 0, stop the loop and display the output
+# following the template: 
+# 'Total = 4 x 6 x 2 = 48'
