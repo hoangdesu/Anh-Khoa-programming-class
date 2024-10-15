@@ -13,8 +13,8 @@ def calculate_1_circle_area(radius):
     return area
     
 
-# area_of_1_circle = calculate_1_circle_area(4)
-# print('area of 3 circles: ', area_of_1_circle * 3)
+area_of_1_circle = calculate_1_circle_area(4)
+print('area of 3 circles: ', area_of_1_circle * 3)
 
 
 # multiple inputs
