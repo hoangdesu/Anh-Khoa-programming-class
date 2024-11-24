@@ -72,7 +72,7 @@ print(binary)
 
 
 Homework:
-is_palindrome('abba') -> true
+e
 is_palindrome('rotator') -> true
 is_palindrome('rotaetor') -> false
 
