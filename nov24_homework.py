@@ -24,11 +24,11 @@ print(freq_dict)
 #     'o': 1
 # }
 
-get_word_frequency("i am trying to buy a piano and the piano has to be grand piano")
-{
-    'piano': 3,
-    'i': 1,
-    'am': 1,
-    ...
+# get_word_frequency("i am trying to buy a piano and the piano has to be grand piano")
+# {
+#     'piano': 3,
+#     'i': 1,
+#     'am': 1,
+#     ...
     
-}
+# }
