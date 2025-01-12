@@ -1,0 +1,3 @@
+Activate the virtual environment: source ./.venv/bin/activate
+
+Run the game using uv package manager: uv run game.py

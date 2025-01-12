@@ -45,6 +45,12 @@ car_y = SCREEN_HEIGHT - 200
 
 angle = 0
 
+# Text and font:
+score = 0
+
+f1_font = pg.font.Font('Formula1-Wide.otf', 32)
+
+
 # Run until the user asks to quit
 running = True
 while running:
@@ -56,10 +62,14 @@ while running:
             
         # capturing keyboard inputs
         # if event.type == pg.KEYUP:
-        #     if event.key == pg.K_UP:
-        #         y -= speed
-        #     elif event.key == pg.K_DOWN:
-        #         y += speed
+            # if event.key == pg.K_UP:
+            #     y -= speed
+            # elif event.key == pg.K_DOWN:
+            #     y += speed
+
+            # if event.key == pg.K_p:
+            #     running = False
+                
 
         
         
@@ -81,10 +91,13 @@ while running:
             car_x += speed
 
                 
-            
 
     # Fill the background with white
     screen.fill((255, 100, 100))
+    
+    # Draw the score after background
+    score_text = f1_font.render(str(score), True, (252, 249, 71))
+    screen.blit(score_text, (SCREEN_WIDTH - score_text.get_width() - 20, 20))
     
     coordinates = (x, y)
 
@@ -94,8 +107,29 @@ while running:
     car_coordinates = (car_x, car_y)
     screen.blit(car, car_coordinates)
 
+    current_coint_sprite = coin_sprites[coin_index]
+    screen.blit(current_coint_sprite, (coin_x, coin_y))
     
-    screen.blit(coin_sprites[coin_index], (coin_x, coin_y))
+    # print('current coint rect():', current_coint_sprite.get_rect())
+    # print(current_coint_sprite.get_width(), current_coint_sprite.get_height())
+    # print(current_coint_sprite.get_bounding_rect().topleft)
+
+    # if (
+    #     rect1.x < rect2.x + rect2.w &&
+    #     rect1.x + rect1.w > rect2.x &&
+    #     rect1.y < rect2.y + rect2.h &&
+    #     rect1.y + rect1.h > rect2.y
+    # ) {
+    #     // Collision detected!
+    #     this.color("green");
+    # } else {
+    #     // No collision
+    #     this.color("blue");
+    # }
+
+    
+        
+    
     if (pg.time.get_ticks() % 40 == 0 or pg.time.get_ticks() % 40 == 1):
         if coin_index < len(coin_sprites) - 1:
             coin_index += 1
@@ -103,10 +137,32 @@ while running:
             coin_index = 0
     
     if coin_y > SCREEN_HEIGHT:
-        coin_y = 0
-        coin_x = random.randint(100, 860)
+        coin_y = -20
+        coin_x = random.randint(50, SCREEN_WIDTH - current_coint_sprite.get_width() - 50)
+        
     else:
         coin_y += 3
+        
+    
+    # AABB: Collision detection between the coin and the car
+    car_y_hitbox_offset = 50
+    if (coin_x < car_x + car.get_width() and
+        coin_x + current_coint_sprite.get_width() > car_x and
+        coin_y < car_y + car.get_height() and
+        coin_y + current_coint_sprite.get_height() > car_y + car_y_hitbox_offset):
+        
+        # reset the coin position
+        coin_y = -20
+        coin_x = random.randint(50, SCREEN_WIDTH - current_coint_sprite.get_width() - 50)
+        
+        # give user 1 point
+        score += 1
+        
+        
+    # Draw boxes around sprites to detect collision
+    # pg.draw.rect(screen, (0,255,0), (coin_x, coin_y, current_coint_sprite.get_width(), current_coint_sprite.get_height()), 2)
+    # pg.draw.rect(screen, (255,0,0), (car_x, car_y + car_y_hitbox_offset, car.get_width(), car.get_height() - car_y_hitbox_offset), 2)
+
         
     # print('pygame.time.get_ticks:', pg.time.get_ticks())
 
@@ -129,3 +185,7 @@ while running:
 
 # Done! Time to quit.
 pg.quit()
+
+
+# Refactor: cleaning up and re-structure the code
+# Axis-aligned bounding box (AABB): Collision detection algorithm in 2D environment
