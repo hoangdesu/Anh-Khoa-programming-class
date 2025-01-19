@@ -26,6 +26,7 @@ coin_sprites = [
 coin_index = 0
 coin_x = random.randint(100, 860)
 coin_y = 20
+coin_speed = 3
 
 color = (250, 255, 112)
 
@@ -34,7 +35,7 @@ x = 90
 y = 350
 
 circle_radius = 50
-speed = 5
+speed = 10
 
 direction = 'right'
 
@@ -49,6 +50,11 @@ angle = 0
 score = 0
 
 f1_font = pg.font.Font('Formula1-Wide.otf', 32)
+
+
+# Mixer: for playing sound
+pg.mixer.init()
+coin_sound = pg.mixer.Sound('coin-sound.mp3')
 
 
 # Run until the user asks to quit
@@ -94,6 +100,7 @@ while running:
 
     # Fill the background with white
     screen.fill((255, 100, 100))
+    # TODO: replace the background with an image
     
     # Draw the score after background
     score_text = f1_font.render(str(score), True, (252, 249, 71))
@@ -102,7 +109,7 @@ while running:
     coordinates = (x, y)
 
     # Draw a solid blue circle in the center
-    pg.draw.circle(screen, color, coordinates, circle_radius)
+    # pg.draw.circle(screen, color, coordinates, circle_radius)
     
     car_coordinates = (car_x, car_y)
     screen.blit(car, car_coordinates)
@@ -129,6 +136,8 @@ while running:
 
     
         
+    # TODO: play sound effects
+    
     
     if (pg.time.get_ticks() % 40 == 0 or pg.time.get_ticks() % 40 == 1):
         if coin_index < len(coin_sprites) - 1:
@@ -139,9 +148,10 @@ while running:
     if coin_y > SCREEN_HEIGHT:
         coin_y = -20
         coin_x = random.randint(50, SCREEN_WIDTH - current_coint_sprite.get_width() - 50)
-        
+
     else:
-        coin_y += 3
+        coin_y += coin_speed
+        
         
     
     # AABB: Collision detection between the coin and the car
@@ -157,6 +167,13 @@ while running:
         
         # give user 1 point
         score += 1
+
+        # play sound effect
+        coin_sound.play()
+        
+        # increase the speed and difficulty
+        coin_speed += 1
+        print(coin_speed)
         
         
     # Draw boxes around sprites to detect collision
