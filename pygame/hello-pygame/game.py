@@ -18,6 +18,14 @@ car_sprite = pg.image.load('f1.png').convert_alpha()
 # car = pg.transform.rotate(car_sprite, 180)
 car = pg.transform.scale(car_sprite, (70, 150))
 
+
+# Opponent cars
+pagani_sprite = pg.image.load('pagani.png').convert_alpha()
+pagani = pg.transform.scale(pagani_sprite, (70, 70*1.5))
+pagani_coordinates = (400, -50)
+pagani_speed = 2
+
+
 coin_sprites = [
     pg.image.load('coin1.png').convert_alpha(), # [0]
     pg.image.load('coin2.png').convert_alpha(), # [1]
@@ -55,6 +63,12 @@ f1_font = pg.font.Font('Formula1-Wide.otf', 32)
 # Mixer: for playing sound
 pg.mixer.init()
 coin_sound = pg.mixer.Sound('coin-sound.mp3')
+coin_sound.set_volume(0.4) # 0 (0%) -> 1.0 (100%)
+
+background_music = pg.mixer.Sound('Lil Jon ft. Eastside Boys - Get Low.mp3')
+background_music.set_volume(0.5)
+# background_music.play(loops=-1) # loop the background music when done playing
+
 
 
 # Run until the user asks to quit
@@ -113,6 +127,7 @@ while running:
     
     car_coordinates = (car_x, car_y)
     screen.blit(car, car_coordinates)
+    screen.blit(pagani, pagani_coordinates)
 
     current_coint_sprite = coin_sprites[coin_index]
     screen.blit(current_coint_sprite, (coin_x, coin_y))
@@ -152,6 +167,12 @@ while running:
     else:
         coin_y += coin_speed
         
+
+    if pagani_coordinates[1] > SCREEN_HEIGHT:
+        random_x = random.randint(50, SCREEN_WIDTH - pagani.get_width())
+        pagani_coordinates = (random_x, -100)
+    else:
+        pagani_coordinates = (pagani_coordinates[0], pagani_coordinates[1] + pagani_speed)
         
     
     # AABB: Collision detection between the coin and the car
