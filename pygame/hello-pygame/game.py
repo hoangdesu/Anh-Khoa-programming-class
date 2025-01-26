@@ -67,8 +67,15 @@ coin_sound.set_volume(0.4) # 0 (0%) -> 1.0 (100%)
 
 background_music = pg.mixer.Sound('Lil Jon ft. Eastside Boys - Get Low.mp3')
 background_music.set_volume(0.5)
-# background_music.play(loops=-1) # loop the background music when done playing
+background_music.play(loops=-1) # loop the background music when done playing
 
+
+is_sound_on = True
+sound_on_icon = pg.image.load('sound-on.png')
+sound_on_icon = pg.transform.scale(sound_on_icon, (40, 40))
+
+sound_off_icon = pg.image.load('sound-off.png')
+sound_off_icon = pg.transform.scale(sound_off_icon, (40, 40))
 
 
 # Run until the user asks to quit
@@ -90,10 +97,29 @@ while running:
             # if event.key == pg.K_p:
             #     running = False
                 
-
+                
+        # clicking on the icon
+        if event.type == pg.MOUSEBUTTONDOWN and event.button == 1:
+            # event.pos is the mouse position.
+            if sound_on_icon.get_rect().collidepoint(event.pos):
+                # print('clicking on the sound icon')
+                # toggle the boolean
+                is_sound_on = not is_sound_on
         
         
     key_pressed = pg.key.get_pressed()
+    
+    # hover effect
+    mouse_pos = pg.mouse.get_pos()
+    # print(mouse_pos)
+    if sound_on_icon.get_rect().collidepoint(mouse_pos):
+        pg.mouse.set_cursor(*pg.cursors.diamond)
+        # print('hovering...')
+    else:
+        pg.mouse.set_cursor(*pg.cursors.arrow)
+        
+    
+    
         
     # if key_pressed[pg.K_UP]:
     #     if y >= circle_radius:
@@ -121,6 +147,16 @@ while running:
     screen.blit(score_text, (SCREEN_WIDTH - score_text.get_width() - 20, 20))
     
     coordinates = (x, y)
+    
+    
+    # Draw sound icon
+    if is_sound_on:
+        screen.blit(sound_on_icon, (10, 10))
+        background_music.set_volume(0.5)
+    else:
+        screen.blit(sound_off_icon, (10, 10))
+        background_music.set_volume(0)
+    
 
     # Draw a solid blue circle in the center
     # pg.draw.circle(screen, color, coordinates, circle_radius)
@@ -193,8 +229,8 @@ while running:
         coin_sound.play()
         
         # increase the speed and difficulty
-        coin_speed += 1
-        print(coin_speed)
+        # coin_speed += 1
+        # print(coin_speed)
         
         
     # Draw boxes around sprites to detect collision
