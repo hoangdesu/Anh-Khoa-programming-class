@@ -1,0 +1,42 @@
+/* 1. select the element you want to style */
+/* 2. apply styling attributes */
+
+h1 {
+    color: rgb(241, 30, 30);
+    text-align: center;
+    background-color: black;
+    padding: 20px;
+}
+
+h1:hover {
+    text-decoration: underline;
+}
+
+h3 {
+    text-align: center;
+}
+
+h4 {
+    text-align: center;
+}
+
+/* select a single id */
+#subtitle {
+    text-align: center;
+}
+
+/* select multiple elements using the same class */
+.car-container {
+    /* border: 1px solid red; */
+    margin-bottom: 16px;
+    background-color: rgb(244, 224, 227);
+    padding: 20px;
+}
+
+.buy-button {
+    display: block;
+    padding: 10px 60px; /* y x */
+    /* background-color: yellow; */
+    /* border: 1px solid red; */
+    
+}
