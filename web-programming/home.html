@@ -15,7 +15,7 @@
     <h2>Featured Cars</h2>
 
     <div class="car-container">
-        <h3>SF90 Stradle</h3>
+        <a href="/sf90.html">SF90 Stradle</a>
         <h4>the new series-production supercar</h4>
         <p>The car’s name encapsulates the true significance of all that has been achieved in terms of performance. The reference to the 90th anniversary of the foundation of Scuderia Ferrari underscores the strong link that has always existed between Ferrari’s track and road cars. A brilliant encapsulation of the most advanced technologies developed in Maranello, the SF90 Stradale is also the perfect demonstration of how Ferrari immediately transitions the knowledge and skills it acquires in competition to its production cars.</p>
         <img src="https://hips.hearstapps.com/hmg-prod/images/2024-ferrari-sf90-xx-stradale-109-654a668fc71a3.jpg?crop=0.491xw:0.367xh;0.251xw,0.432xh&resize=1200:*" alt="" height="315">
@@ -34,7 +34,10 @@
     <script>
         const buyButton = document.querySelector('#sf90');
         buyButton.addEventListener('click', () => {
-            alert("THANK YOU FOR BUYING THE SF90!! YOU NEED TO PAY 1 MILLION DOLLARS NOW!")
+            // alert("THANK YOU FOR BUYING THE SF90!! YOU NEED TO PAY 1 MILLION DOLLARS NOW!")
+            if (confirm('Do you want to buy now?')) {
+              window.location.href = '/sf90.html';
+            }
         });
     </script>
 
