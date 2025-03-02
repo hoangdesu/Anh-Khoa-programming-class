@@ -6,6 +6,14 @@ body {
     background-color: rgb(115, 211, 201);
 }
 
+/* id selector: a single element */
 #headings {
     text-align: center;
+}
+
+/* class selector: multiple elements */
+.car-container {
+    background-color: antiquewhite;
+    padding: 16px;
+    margin: 16px;
 }
