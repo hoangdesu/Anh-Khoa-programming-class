@@ -1,0 +1,80 @@
+.team-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 32px;
+    row-gap: 64px;
+}
+
+.team-box {
+    border: 2px solid black;
+    padding: 16px;
+    border-radius: 0px 16px 0px 0px;
+    border-bottom: none;
+    border-left: none;
+    transition: 0.2s all ease;
+    /* max-width: 50%; */
+}
+
+.team-box:hover {
+    border-color: orange;
+    /* padding-top: 32px; */
+}
+
+.row1-stats {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    border-bottom: 1px solid gray;
+    padding-bottom: 16px;
+}
+
+.row2-team {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid gray;
+
+    h1 {
+        border-left: 6px solid orange;
+        padding-left: 16px;
+    }
+
+    img {
+        width: 50px;
+        height: 50px;
+    }
+}
+
+.row3-drivers {
+    display: flex;
+    /* justify-content: space-between; */
+    gap: 16px;
+
+    .driver {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border: 1px solid gray;
+        border-left: none;
+        border-top: none;
+        border-radius: 0 0 16px;
+        flex: 1;
+        margin-top: 16px;
+        overflow: hidden;
+        
+
+        img {
+            width: 50px;
+            height: 50px;
+            object-fit: cover;
+        }
+    }
+}
+
+.row4-car {
+    background-image: url("https://www.formula1.com/assets/driverTeam/static/images/plus-x2.avif");
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 16px;
+}
