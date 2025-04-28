@@ -65,7 +65,7 @@ const renderTeamBox = (team) => {
                 </div>
             </div>
             <div class="row2-team">
-                <h1>${team.name}</h1>
+                <h1 style="border-left: 6px solid ${team.color};">${team.name}</h1>
                 <img src="${team.logo}" alt="${team.name}">
             </div>
             <div class="row3-drivers">

@@ -1,3 +1,13 @@
+@font-face {
+    font-family: f1;
+    src: url(f1.woff2);
+}
+
+body {
+    font-family: f1;
+}
+  
+
 .team-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -47,7 +57,7 @@
     border-bottom: 1px solid gray;
 
     h1 {
-        border-left: 6px solid orange;
+        /* border-left: 6px solid black; */
         padding-left: 16px;
     }
 
