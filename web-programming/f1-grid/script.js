@@ -50,13 +50,14 @@ const teams = [
                 image: 'https://media.formula1.com/d_driver_fallback_image.png/content/dam/fom-website/drivers/Y/YUKTSU01_Yuki_Tsunoda/yuktsu01.png'
             }
         ],
-        car: 'https://media.formula1.com/d_team_car_fallback_image.png/content/dam/fom-website/teams/2025/red-bull-racing.png'
+        car: 'https://media.formula1.com/d_team_car_fallback_image.png/content/dam/fom-website/teams/2025/red-bull-racing.png',
+        color: '#3671c6'
     },
 ];
 
 const renderTeamBox = (team) => {
     return `
-        <div class="team-box">
+        <a class="team-box" href="/teams/${team.name}.html">
             <div class="row1-stats">
                 <div class="ranking">${team.ranking}</div>
                 <div class="points">
@@ -81,7 +82,7 @@ const renderTeamBox = (team) => {
             <div class="row4-car">
                 <img src="${team.car}" alt="${team.name}">
             </div>
-        </div>
+        </a>
     `;
 }
 
@@ -93,6 +94,7 @@ for (let i = 0; i < teams.length; i++) {
 
 const teamBoxes = document.querySelectorAll('.team-box');
 
+// change the border colors on mouse hover
 teamBoxes.forEach((teamBox, i) => {
     teamBox.addEventListener('mouseenter', () => {
         teamBox.style.borderColor = teams[i].color;
