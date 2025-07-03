@@ -1,0 +1,33 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+#search-box {
+    background-color: #4c2615;
+    padding: 64px;
+
+    #top-row {
+        input {
+            width: 100%;
+            border-radius: 32px;
+            padding: 10px;
+        }
+    }
+
+    #bottom-row {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        margin-top: 32px;
+    }
+}
+
+#restaurant-list {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+
+    .restaurant-container {
+        border: 1px solid red;
+    }
+}

@@ -18,8 +18,9 @@ body {
   align-items: center;
   gap: 150px;
   background: 
-    linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
-    url(/images/background.png);
+    /* linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
+    url(/images/background.png); */
+    rgb(1, 1, 73);
   /* background-repeat: no-repeat; */
   background-size: cover;
   background-position: center;
