@@ -14,3 +14,19 @@ restaurant_list.forEach(res => {
     restaurantDiv.innerHTML += restaurantTemplate;
 });
 
+const filterBtn = document.querySelector('#filter-btn');
+const modal = document.querySelector('#modal');
+
+// hide modal on start
+modal.style.display = 'none';
+
+filterBtn.addEventListener('click', () => {
+    modal.style.display = 'block';
+});
+
+modal.addEventListener('click', (e) => {
+    if (e.target === modal) {
+        modal.style.display = 'none';
+    }         
+});
+
