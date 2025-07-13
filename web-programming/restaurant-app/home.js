@@ -37,6 +37,10 @@ modal.addEventListener('click', (e) => {
 // Search function
 const searchForm = document.querySelector('#search-form');
 
+const clearSearchButton = document.querySelector('#clear-search');
+const searchInput = document.querySelector('#search-input');
+
+
 searchForm.addEventListener('submit', (e) => {
     e.preventDefault(); // prevent the page from reloading (default behavior)
     // console.log(e);
@@ -71,6 +75,21 @@ searchForm.addEventListener('submit', (e) => {
     });
 
     // reset the search box
-    e.target[0].value = '';
+    // e.target[0].value = '';
+
+    clearSearchButton.style.display = 'flex';
 });
 
+
+clearSearchButton.addEventListener('click', (e) => {
+    searchInput.value = '';
+
+    restaurantDiv.innerHTML = '';
+
+    restaurant_list.forEach(res => {
+        const restaurantTemplate = renderRestaurant(res);
+        restaurantDiv.innerHTML += restaurantTemplate;
+    });
+
+    clearSearchButton.style.display = 'none';
+});
