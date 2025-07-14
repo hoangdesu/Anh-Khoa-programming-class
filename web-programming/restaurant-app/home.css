@@ -68,16 +68,51 @@
     width: 100vw;
     height: 100vh;
     background: rgba(0, 0, 0, 0.5);
-    display: flex;
+    display: block;
     justify-items: center;
     align-content: center;
     backdrop-filter: blur(4px);
 
     #modal-container {
         background: #d9d9d9;
-        width: 500px;
+        width: 600px;
         border: 16px;
         padding: 32px;
+        border-radius: 20px;
+    }
+
+    .modal-btn-container {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+        margin-top: 10px;
+        margin-bottom: 32px;
+    }
+
+    .modal-btn {
+        border-radius: 16px;
+        padding: 10px 16px;
+        border: 1px solid transparent;
+        transition: all 200ms ease;
+    }
+
+    .modal-btn:hover {
+        border: 1px solid rgb(197, 11, 42);
+        cursor: pointer;    
+    }
+
+    #apply-filter-btn {
+        width: 100%;
+        border-radius: 16px;
+        padding: 10px 16px;
+        border: 1px solid transparent;
+        transition: all 200ms ease;
+        background: rgb(241, 144, 151);
+    }
+
+    #apply-filter-btn:hover {
+        border: 1px solid rgb(197, 11, 42);
+        cursor: pointer;    
     }
 }
 
