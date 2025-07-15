@@ -114,6 +114,11 @@
         border: 1px solid rgb(197, 11, 42);
         cursor: pointer;    
     }
+
+    /* empty class, used to apply style to clicked button */
+    .modal-btn-selected {
+        background: rgb(224, 162, 162);
+    }
 }
 
 main h1 {

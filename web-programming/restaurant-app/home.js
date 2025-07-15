@@ -93,3 +93,55 @@ clearSearchButton.addEventListener('click', (e) => {
 
     clearSearchButton.style.display = 'none';
 });
+
+
+const locationContainer = document.querySelector('#location-container');
+
+const locationButtons = locationContainer.children;
+
+// locationButtons[0].class
+
+// Array.from(locationButtons).forEach(btn => {
+//     btn.addEventListener('click', () => {
+//         // console.log(btn.classList);
+        
+//         // loop over all the locationButtons, remove the selected class
+//         Array.from(locationButtons).forEach(b => {
+//             b.classList.remove('modal-btn-selected');
+//         });
+        
+//         btn.classList.add('modal-btn-selected');
+//     });
+// });
+
+
+function addClickEventsOnModalButtons(containerId) {
+    const container = document.querySelector(containerId);
+    const elements = container.children;
+
+    Array.from(elements).forEach(btn => {
+        btn.addEventListener('click', () => {
+            // loop over all the locationButtons, remove the selected class
+            Array.from(elements).forEach(b => {
+                b.classList.remove('modal-btn-selected');
+            });
+            
+            btn.classList.add('modal-btn-selected');
+        });
+    });
+}
+
+const buttonGroupIds = ['#location-container', '#price-container', '#category-container'];
+
+buttonGroupIds.forEach(containerId => addClickEventsOnModalButtons(containerId));
+
+const applyFilterBtn = document.querySelector('#apply-filter-btn');
+
+applyFilterBtn.onclick = () => {
+    // TODO: apply the filters on the current list
+    // ...
+
+    
+    // finally, close the modal
+    modal.style.display = 'none';
+}
