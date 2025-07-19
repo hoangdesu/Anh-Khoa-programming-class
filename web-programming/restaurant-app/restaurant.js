@@ -14,9 +14,16 @@ console.log('found:', restaurant);
 const title = document.querySelector('#title');
 const address = document.querySelector('#address');
 const image = document.querySelector('#image');
+const favBtn = document.querySelector('#fav-btn');
+
 
 title.textContent = restaurant.title;
 document.title = restaurant.title;
 address.textContent = restaurant.address;
 
 image.src = restaurant.image;
+
+favBtn.addEventListener('click', () => {
+    favorites.push(restaurant);
+    console.log(favorites);
+});

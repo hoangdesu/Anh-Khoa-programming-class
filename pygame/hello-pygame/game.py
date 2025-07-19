@@ -184,8 +184,6 @@ while running:
     #     // No collision
     #     this.color("blue");
     # }
-
-    
         
     # TODO: play sound effects
     

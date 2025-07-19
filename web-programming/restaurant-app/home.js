@@ -21,7 +21,7 @@ const filterBtn = document.querySelector('#filter-btn');
 const modal = document.querySelector('#modal');
 
 // hide modal on start
-// modal.style.display = 'none';
+modal.style.display = 'none';
 
 filterBtn.addEventListener('click', () => {
     modal.style.display = 'block';
