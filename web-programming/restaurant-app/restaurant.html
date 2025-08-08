@@ -4,12 +4,50 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="restaurant.css">
 </head>
 <body>
-    <h1 id="title"></h1>
-    <p id="address"></p>
-    <img src="" alt="" id="image" width="50%">
-    <button id="fav-btn">Add to Favorite</button>
+    <main>
+        <!-- Row 1: information -->
+        <div id="row1">
+            <div>
+                <h1 id="title"></h1>
+                <span>
+                    <img src="./images/location-icon.png" alt="" width="20"> 
+                    <span id="address"></span>
+                </span>
+            </div>
+            <div>
+                <button id="fav-btn" class="btn1">
+                    <img src="./images/favorite-icon.png" alt="" width="16">
+                    <span>Add to Favorite</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Row 2: images and map -->
+        <div id="row2">
+            <!-- Column 1: images -->
+            <div id="images-container">
+                <img src="" alt="" id="main-image">
+                <div id="thumbnails-container">
+                    <!-- <img src="./images/test-1.jpg" alt="">
+                    <img src="./images/test-2.jpg" alt="">
+                    <img src="./images/test-3.jpg" alt="">
+                    <img src="./images/test-4.jpg" alt=""> -->
+                </div>
+            </div>
+
+            <!-- Column 2: Map -->
+            <div id="map-container">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d250.95908818864842!2d106.72973258849738!3d10.803289297739756!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3175261bfbb364a1%3A0xd36eb83d3db44ba6!2zMTA3OEE0IFh1w6JuIFRo4buneSwgVGjhuqNvIMSQaeG7gW4sIFRo4bunIMSQ4bupYywgSOG7kyBDaMOtIE1pbmgsIFZpZXRuYW0!5e0!3m2!1sen!2s!4v1754573859608!5m2!1sen!2s" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+
+        </div>
+
+
+        
+    </main>
 
     <script src="data.js"></script>
     <script src="favorite_list.js"></script>
