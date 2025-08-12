@@ -1,3 +1,5 @@
+// Mock data: sample data only used for testing
+
 const restaurant_list = [
     {
         id: 1,
@@ -5,33 +7,38 @@ const restaurant_list = [
         title: 'Ice Cream Shop',
         address: 'Thao Dien, District 2',
         rating: 4.5,
+        description: 'Slow-cooked for eight hours, this intensely flavored and juicy lamb shank, infused with fresh rosemary and sage, is a house specialty. Served with smooth mashed potatoes and char-grilled, crispy asparagus, topped with a tangy golden-brown glaze for a meal hard to forget.'
     },
     {
         id: 2,
         image: '',
         title: 'Tortilla Paradise',
         address: 'Thao Dien, District 2',
-        rating: 4.5
+        rating: 4.5,
+        description: 'Slow-cooked for eight hours, this intensely flavored and juicy lamb shank, infused with fresh rosemary and sage, is a house specialty. Served with smooth mashed potatoes and char-grilled, crispy asparagus, topped with a tangy golden-brown glaze for a meal hard to forget.'
     },
     {
         id: 3,
         image: '',
         title: 'San Fran Bagels',
         address: 'Thao Dien, District 2',
-        rating: 4.5
+        rating: 4.5,
+        description: 'Slow-cooked for eight hours, this intensely flavored and juicy lamb shank, infused with fresh rosemary and sage, is a house specialty. Served with smooth mashed potatoes and char-grilled, crispy asparagus, topped with a tangy golden-brown glaze for a meal hard to forget.'
     },  
     {
         id: 4,
         image: '',
         title: 'Vietnamese Food',
         address: 'Thao Dien, District 2',
-        rating: 4.5
+        rating: 4.5,
+        description: 'Slow-cooked for eight hours, this intensely flavored and juicy lamb shank, infused with fresh rosemary and sage, is a house specialty. Served with smooth mashed potatoes and char-grilled, crispy asparagus, topped with a tangy golden-brown glaze for a meal hard to forget.'
     }, 
     {
         id: 5,
         image: '',
         title: 'Boba Yoghurt',
         address: 'Thao Dien, District 2',
-        rating: 4.5
+        rating: 4.5,
+        description: 'Slow-cooked for eight hours, this intensely flavored and juicy lamb shank, infused with fresh rosemary and sage, is a house specialty. Served with smooth mashed potatoes and char-grilled, crispy asparagus, topped with a tangy golden-brown glaze for a meal hard to forget.'
     }, 
 ];

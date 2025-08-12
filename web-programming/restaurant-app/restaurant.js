@@ -15,11 +15,13 @@ const title = document.querySelector('#title');
 const address = document.querySelector('#address');
 const mainImage = document.querySelector('#main-image');
 const favBtn = document.querySelector('#fav-btn');
+const descriptionP = document.querySelector('#description');
 
 
 title.textContent = restaurant.title;
 document.title = restaurant.title;
 address.textContent = restaurant.address;
+descriptionP.textContent = restaurant.description;
 
 mainImage.src = restaurant.image;
 
@@ -62,7 +64,7 @@ thumbnailImages.forEach(thumbnailImg => {
     thumbnailImg.addEventListener('mouseleave', (evt) => {
         mainImage.src = restaurant.image;
     });
-})
+});
 
 
 
