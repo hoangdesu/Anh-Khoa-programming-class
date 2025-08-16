@@ -9,7 +9,7 @@
 <body>
     <main>
         <!-- Row 1: information -->
-        <div id="row1">
+        <section id="row1">
             <div>
                 <h1 id="title"></h1>
                 <span>
@@ -23,10 +23,10 @@
                     <span>Add to Favorite</span>
                 </button>
             </div>
-        </div>
+        </section>
 
         <!-- Row 2: images and map -->
-        <div id="row2">
+        <section id="row2">
             <!-- Column 1: images -->
             <div id="images-container">
                 <img src="" alt="" id="main-image">
@@ -43,10 +43,10 @@
                 <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d250.95908818864842!2d106.72973258849738!3d10.803289297739756!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3175261bfbb364a1%3A0xd36eb83d3db44ba6!2zMTA3OEE0IFh1w6JuIFRo4buneSwgVGjhuqNvIMSQaeG7gW4sIFRo4bunIMSQ4bupYywgSOG7kyBDaMOtIE1pbmgsIFZpZXRuYW0!5e0!3m2!1sen!2s!4v1754573859608!5m2!1sen!2s" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
             </div>
 
-        </div>
+        </section>
 
         <!-- Row 3: description and reservation box -->
-        <div id="row3">
+        <section id="row3">
             <!-- Col 1 -->
             <div>
                 <p id="description"></p>
@@ -75,15 +75,28 @@
                             </div>
                         </div>
                     </div>
-                    <button class="btn1">Reserve Now!</button>
+                    <button class="btn1" id="reserve-now-btn">Reserve Now!</button>
                 </div>
             </div>
-        </div>
+        </section>
+
+
+        <!-- Row 3: Menu -->
+
+        
+        <!-- Row 4: Reviews -->
 
 
         <div style="margin-bottom: 100px;"></div>
         
     </main>
+
+    <!-- Overlay modal -->
+    <div id="confirm-modal-container">
+        <div id="confirm-modal-box">
+            <h1>Confirm booking</h1>
+        </div>
+    </div>
 
     <script src="data.js"></script>
     <script src="favorite_list.js"></script>

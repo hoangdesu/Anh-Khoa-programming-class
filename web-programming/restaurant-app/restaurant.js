@@ -11,6 +11,7 @@ if (!restaurant) {
 
 console.log('found:', restaurant);
 
+// grab containers from the DOM
 const title = document.querySelector('#title');
 const address = document.querySelector('#address');
 const mainImage = document.querySelector('#main-image');
@@ -18,6 +19,7 @@ const favBtn = document.querySelector('#fav-btn');
 const descriptionP = document.querySelector('#description');
 
 
+// injecting data into blank containers
 title.textContent = restaurant.title;
 document.title = restaurant.title;
 address.textContent = restaurant.address;
@@ -67,4 +69,16 @@ thumbnailImages.forEach(thumbnailImg => {
 });
 
 
+// Modal
+const confirmModalContainer = document.querySelector('#confirm-modal-container');
 
+confirmModalContainer.addEventListener('click', (e) => {
+    if (e.target === confirmModalContainer) {
+        confirmModalContainer.style.display = 'none';
+    }         
+});
+
+const reserveNowBtn = document.querySelector('#reserve-now-btn');
+reserveNowBtn.addEventListener('click', () => {
+    confirmModalContainer.style.display = 'block';
+});
