@@ -8,16 +8,17 @@
 </head>
 <body>
     <div id="container">
-        <form action="" method="" id="sign-in-form">
+        <form action="http://localhost:3000/login" method="POST" id="sign-in-form">
             <h2>Welcome, Let's sign in</h2>
             <div class="form-input">
                 <label for="uname">Username</label>
-                <input type="text" placeholder="Enter username" id="uname">
+                <input type="text" placeholder="Enter username" id="uname" name="usrname" required>
             </div>
             <div class="form-input">
                 <label for="pwd">Password</label>
-                <input type="password" placeholder="Type password" id="pwd">
+                <input type="password" placeholder="Type password" id="pwd" name="psword" required>
             </div>
+            <button>Sign In</button>
             <h3>Or, let's <a href="/sign-up.html">sign-up</a></h3>
         </form>
     </div>

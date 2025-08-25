@@ -149,3 +149,12 @@ fetch('http://localhost:3000/restaurants')
       modal.style.display = 'none';
     };
   });
+
+
+  
+// fetch('http://localhost:3000/restaurants')
+//   .then(res => res.json())
+//   .then(data => {
+//     ... 
+//     ///put old code here
+//   })
