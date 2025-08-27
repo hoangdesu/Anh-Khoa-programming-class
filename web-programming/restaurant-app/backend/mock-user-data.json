@@ -6,5 +6,30 @@
     {
         "username": "steven",
         "password": "gta5"
+    },
+    {
+        "username": "hehe",
+        "password": "hahaha",
+        "email": "haha@a.com"
+    },
+    {
+        "username": "brian",
+        "password": "ilovesf90",
+        "email": "brian@a.com"
+    },
+    {
+        "username": "lewis",
+        "password": "mustbethewater",
+        "email": "lewis@hamilton.com"
+    },
+    {
+        "username": "charles",
+        "password": "huhu",
+        "email": "charles@leclerc.com"
+    },
+    {
+        "username": "haha",
+        "password": "hoho",
+        "email": "hehe@hihi.com"
     }
 ]

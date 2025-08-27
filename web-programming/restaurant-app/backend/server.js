@@ -53,7 +53,8 @@ app.post('/login', (req, res) => {
       found = true;
       
       if (form.psword === user.password) {
-        return res.send(`Login successfully. Welcome ${form.usrname}!`);
+        // return res.send(`Login successfully. Welcome ${form.usrname}!`);
+        return res.redirect('http://127.0.0.1:5500/home.html');
       } else {
         return res.send(`Login failed. Wrong password :(`);
       }
@@ -62,11 +63,40 @@ app.post('/login', (req, res) => {
 
   if (!found) {
     console.log(`user ${form.usrname} does NOT exist`);
-    res.send(`user ${form.usrname} does NOT exist`);
+    return res.send(`user ${form.usrname} does NOT exist`);
   }
-   
 
-  res.send("Received a request to login");
+});
+
+
+app.post('/sign-up', (req, res) => {
+    const form = req.body;
+
+    // console.log(form);
+
+    const database = 'mock-user-data.json';
+
+    // read data from a user database
+    const file = fs.readFileSync(database);
+    const users = JSON.parse(file);
+
+    // data processing
+    const newUser = {
+      username: form.uname,
+      password: form.password,
+      email: form.email
+    }
+
+    // add new user to the list
+    users.push(newUser);
+
+    console.log('new database: ', users);
+
+    // update the new list back to the database (file)
+    fs.writeFileSync(database, JSON.stringify(users, null, 4));
+    
+    res.redirect('http://127.0.0.1:5500/sign-in.html');
+    
 });
 
 
