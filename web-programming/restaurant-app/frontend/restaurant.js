@@ -18,7 +18,6 @@ fetch('http://localhost:3000/restaurants')
     const title = document.querySelector('#title');
     const address = document.querySelector('#address');
     const mainImage = document.querySelector('#main-image');
-    const favBtn = document.querySelector('#fav-btn');
     const descriptionP = document.querySelector('#description');
 
 
@@ -30,10 +29,10 @@ fetch('http://localhost:3000/restaurants')
 
     mainImage.src = restaurant.image;
 
-    favBtn.addEventListener('click', () => {
-        favorites.push(restaurant);
-        console.log(favorites);
-    });
+    // favBtn.addEventListener('click', () => {
+    //     favorites.push(restaurant);
+    //     console.log(favorites);
+    // });
 
 
     // Thumbnails
@@ -85,7 +84,33 @@ fetch('http://localhost:3000/restaurants')
     reserveNowBtn.addEventListener('click', () => {
         confirmModalContainer.style.display = 'block';
     });
+
+
+    // Feature: add the current restaurant to favorite list
+    const favBtn = document.querySelector('#fav-btn');
+    const favIcon = document.querySelector('#fav-icon');
+
+    favBtn.addEventListener('click', () => {
+        console.log(restaurant);
+
+        fetch('http://localhost:3000/favorites', {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(restaurant)
+        })
+            .then(res => {
+                // console.log(res.status);
+                if (res.status === 200) {
+                    favIcon.src = './images/red-heart.webp';
+                }
+            })
+        
+    })
+
   });
+
 
 
 

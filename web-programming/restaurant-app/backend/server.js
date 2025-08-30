@@ -9,6 +9,7 @@ const port = 3000;
 // Middleware: plugins/extensions
 app.use(cors());
 app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 
 
 
@@ -98,6 +99,40 @@ app.post('/sign-up', (req, res) => {
     res.redirect('http://127.0.0.1:5500/sign-in.html');
     
 });
+
+
+// Endpoint:
+// GET /favorites
+app.get('/favorites', (req, res) => {
+    const file = fs.readFileSync('mock-favorites.json');
+    const favorites = JSON.parse(file);
+
+    res.json(favorites);
+});
+
+
+// PUT /favorites
+app.put('/favorites', (req, res) => {
+    console.log('received a PUT request at /favorites');
+
+    const restaurant = req.body;
+
+    console.log('restaurant:', restaurant);
+
+    const file = fs.readFileSync('mock-favorites.json');
+    const favorites = JSON.parse(file);
+
+    favorites.push(restaurant);
+  
+    fs.writeFileSync('mock-favorites.json', JSON.stringify(favorites, null, 4));
+
+    // no data needed to be sent back
+    return res.sendStatus(200); // 200 = OK
+});
+
+
+// DELETE /favorites
+
 
 
 app.listen(port, () => {
