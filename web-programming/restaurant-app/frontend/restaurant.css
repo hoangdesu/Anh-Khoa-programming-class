@@ -168,8 +168,8 @@ main {
 }
 
 #confirm-modal-box {
-    width: 200px;
-    height: 200px;
+    width: 300px;
+    height: 400px;
     background-color: white;
     border-radius: 16px;
     padding: 32px;

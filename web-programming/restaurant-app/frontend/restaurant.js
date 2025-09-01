@@ -73,6 +73,13 @@ fetch('http://localhost:3000/restaurants')
 
     // Modal
     const confirmModalContainer = document.querySelector('#confirm-modal-container');
+    const dateInput = document.querySelector('#date-input');
+    const timeInput = document.querySelector('#time-input');
+    const guestsInput = document.querySelector('#guests-input');
+    const dateConfirm = document.querySelector('#date-confirm');
+    const timeConfirm = document.querySelector('#time-confirm');
+    const guestsConfirm = document.querySelector('#guests-confirm');
+    
 
     confirmModalContainer.addEventListener('click', (e) => {
         if (e.target === confirmModalContainer) {
@@ -82,6 +89,13 @@ fetch('http://localhost:3000/restaurants')
 
     const reserveNowBtn = document.querySelector('#reserve-now-btn');
     reserveNowBtn.addEventListener('click', () => {
+        if (!dateInput.value || timeInput.value || guestsInput.value)
+            return;
+        
+        dateConfirm.textContent = dateInput.value;
+        timeConfirm.textContent = timeInput.value;
+        guestsConfirm.textContent = guestsInput.value;
+
         confirmModalContainer.style.display = 'block';
     });
 
@@ -102,13 +116,12 @@ fetch('http://localhost:3000/restaurants')
         })
             .then(res => {
                 // console.log(res.status);
-                if (res.status === 200) {
+                if (res.status === 201) {
                     favIcon.src = './images/red-heart.webp';
                 }
             })
         
     })
-
   });
 
 

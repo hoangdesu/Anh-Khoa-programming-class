@@ -22,51 +22,44 @@
 //     }
 // ];
 
+const listContainer = document.querySelector('#list-container');
+
+function renderRestaurant(restaurant) {
+  return `
+    <div class="restaurant-container">
+        <img src="${restaurant.image}" alt="${restaurant.title}">
+        <div>
+            <h3>${restaurant.title}</h3>
+            <p>${restaurant.address}</p>
+            <p>${restaurant.rating}</p>
+        </div>
+        <button onclick="remove(${restaurant.id})">Remove</button>
+    </div>
+`;
+}
+
+const renderRestaurantList = (favorites) => {
+  listContainer.innerHTML = '';
+
+  favorites.forEach((restaurant) => {
+    const htmlTemplate = renderRestaurant(restaurant);
+    listContainer.innerHTML += htmlTemplate;
+  });
+};
+
+function remove(restaurantId) {
+  console.log('removing...', restaurantId);
+
+  const filteredFavorites = favorites.filter((fav) => fav.id !== restaurantId);
+  console.log(filteredFavorites);
+
+  favorites = filteredFavorites;
+
+//   renderRestaurantList(favorites);
+}
+
 fetch('http://localhost:3000/favorites')
-    .then(res => res.json())
-    .then(favorites => {
-        const listContainer = document.querySelector('#list-container');
-
-        function renderRestaurant(restaurant) {
-            return `
-                <div class="restaurant-container">
-                    <img src="${restaurant.image}" alt="${restaurant.title}">
-                    <div>
-                        <h3>${restaurant.title}</h3>
-                        <p>${restaurant.address}</p>
-                        <p>${restaurant.rating}</p>
-                    </div>
-                    <button onclick="remove(${restaurant.id})">Remove</button>
-                </div>
-            `;
-        }
-
-        const renderRestaurantList = () => {
-            listContainer.innerHTML = '';
-
-            favorites.forEach(restaurant => {
-                const htmlTemplate = renderRestaurant(restaurant);
-                listContainer.innerHTML += htmlTemplate;
-            });
-        }
-
-        renderRestaurantList();
-
-
-        function remove(restaurantId) {
-            console.log('removing...', restaurantId);
-
-            const filteredFavorites = favorites.filter(fav => fav.id !== restaurantId);
-            console.log(filteredFavorites);
-
-            favorites = filteredFavorites;
-
-            renderRestaurantList();
-        }
-    });
-
-
-
-
-
-
+  .then((res) => res.json())
+  .then((favorites) => {
+    renderRestaurantList(favorites);
+  });

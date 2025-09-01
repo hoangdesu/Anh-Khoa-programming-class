@@ -61,17 +61,17 @@
                         <div id="pickers-row-1">
                             <div class="picker-container" id="date-picker">
                                 <label for="">Date</label>
-                                <input type="date" />
+                                <input type="date" id="date-input" />
                             </div>
                             <div class="picker-container">
                                 <label for="">Time</label>
-                                <input type="time" />
+                                <input type="time" id="time-input" />
                             </div>
                         </div>
                         <div>
                             <div class="picker-container" id="guest-picker">
                                 <label for="">Guests</label>
-                                <input type="number" name="" id="">
+                                <input type="number" name="" id="guests-input">
                             </div>
                         </div>
                     </div>
@@ -95,6 +95,22 @@
     <div id="confirm-modal-container">
         <div id="confirm-modal-box">
             <h1>Confirm booking</h1>
+
+            <table>
+                <tr>
+                    <td>Date:</td>
+                    <td><p id="date-confirm"></p></td>
+                </tr>
+                <tr>
+                    <td>Time:</td>
+                    <td><p id="time-confirm"></p></td>
+                </tr>
+                <tr>
+                    <td>Guests:</td>
+                    <td><p id="guests-confirm"></p></td>
+                </tr>
+            </table>
+
         </div>
     </div>
 

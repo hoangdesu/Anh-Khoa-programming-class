@@ -18,6 +18,7 @@ app.get('/', (req, res) => {
   res.send('Hello World!')
 });
 
+
 app.get('/restaurants', (req, res) => {
     // const restaurants = ['a', 'b', 'c', 'd'];
 
@@ -127,7 +128,7 @@ app.put('/favorites', (req, res) => {
     fs.writeFileSync('mock-favorites.json', JSON.stringify(favorites, null, 4));
 
     // no data needed to be sent back
-    return res.sendStatus(200); // 200 = OK
+    return res.sendStatus(201); // 201 = OK
 });
 
 
