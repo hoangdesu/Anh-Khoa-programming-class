@@ -31,12 +31,14 @@ db.close();
 // Using built-in NodeJS
 
 // const { DatabaseSync } = require('node:sqlite');
-// const db = new DatabaseSync('../data/restaurant-app.db');
+// const db = new DatabaseSync('./data/restaurant-app.db');
 
 
 // const query = db.prepare(`
 //     SELECT * FROM users;    
 // `);
+
+// query.run()
 
 // console.log(query.all());
 

@@ -2,8 +2,13 @@ const express = require('express');
 const fs = require('fs');
 const cors = require('cors');
 
-const sqlite3 = require('sqlite3').verbose();
-const db = new sqlite3.Database('../data/restaurant-app.db');
+// const sqlite3 = require('sqlite3').verbose();
+// const db = new sqlite3.Database('./data/restaurant-app.db');
+
+// Switch over to using built-in sqlite3 from node
+
+const { DatabaseSync } = require('node:sqlite');
+const db = new DatabaseSync('./data/restaurant-app.db');
 
 const app = express();
 const port = 3000;
@@ -65,37 +70,60 @@ app.post('/login', (req, res) => {
   //   return res.send(`user ${form.usrname} does NOT exist`);
   // }
 
-  db.serialize(() => {
-    // const query = `SELECT * FROM users WHERE username = ${form.usrname}`;
+  // sqlite3
+  // db.serialize(() => {
+  //   // const query = `SELECT * FROM users WHERE username = ${form.usrname}`;
 
-    // db.each(query, (err, row) => {
-    //   console.log('Found:', row.username + ': ' + row.password);
-    // });
+  //   // db.each(query, (err, row) => {
+  //   //   console.log('Found:', row.username + ': ' + row.password);
+  //   // });
 
-    db.get(
-      'SELECT * FROM users WHERE username = ?',
-      form.usrname,
-      (err, user) => {
-        if (err) {
-          console.error(err.message);
-          return res.send('Login failed. Server error');
-        }
+  //   db.get(
+  //     'SELECT * FROM users WHERE username = ?',
+  //     form.usrname,
+  //     (err, user) => {
+  //       if (err) {
+  //         console.error(err.message);
+  //         return res.send('Login failed. Server error');
+  //       }
 
-        // console.log('Retrieved row:', user);
+  //       // console.log('Retrieved row:', user);
 
-        if (!user) {
-          return res.send(`user ${form.usrname} does NOT exist`);
-        }
+  //       if (!user) {
+  //         return res.send(`user ${form.usrname} does NOT exist`);
+  //       }
 
-        if (form.psword === user.password) {
-          console.log(`Login successfully. Welcome ${form.usrname}!`);
+  //       if (form.psword === user.password) {
+  //         console.log(`Login successfully. Welcome ${form.usrname}!`);
 
-          return res.redirect('http://127.0.0.1:5501/home.html');
-        }
-      }
-    );
-  });
+  //         return res.redirect('http://127.0.0.1:5501/home.html');
+  //       }
+  //     }
+  //   );
+  // });
+
+
+  const queryStr = 'SELECT * FROM users WHERE username = ?';
+  const getUserByUsername = db.prepare(queryStr);
+
+  const user = getUserByUsername.get(form.usrname);
+
+  if (!user) {
+    return res.send(`user ${form.usrname} does NOT exist`);
+  }
+
+  if (user.password === form.psword) {
+    console.log(`Login successfully. Welcome ${form.usrname}!`);
+    return res.redirect('http://127.0.0.1:5501/home.html');
+  } else {
+    console.log(`Wrong password. Get out!`);
+    return res.redirect('http://127.0.0.1:5501/sign-in.html');
+  }
+
+  // console.log('/login: ', user);
 });
+
+
 
 app.post('/sign-up', (req, res) => {
   const form = req.body;
@@ -125,18 +153,38 @@ app.post('/sign-up', (req, res) => {
 
   // res.redirect('http://127.0.0.1:5500/sign-in.html');
 
-  db.serialize(() => {
-    const stmt = db.prepare('INSERT INTO users (username, password) VALUES (?, ?)');
+  // db.serialize(() => {
+  //   const stmt = db.prepare(
+  //     'INSERT INTO users (username, password) VALUES (?, ?)'
+  //   );
 
-    stmt.run(form.uname, form.password, function (err) {
-      if (err) {
-        console.error(err.message);
-      } else {
-        console.log(`A row has been inserted with rowid ${this.lastID}`);
-      }
-    });
-    stmt.finalize();
-  });
+  //   stmt.run(form.uname, form.password, function (err) {
+  //     if (err) {
+  //       console.error(err.message);
+  //     } else {
+  //       console.log(`A new user has beed added with rowid ${this.lastID}`);
+  //     }
+  //   });
+  //   stmt.finalize();
+  //   return res.redirect('http://127.0.0.1:5501/sign-in.html');
+  // });
+
+
+  // check if user not already exists
+  const queryStr = 'SELECT * FROM users WHERE username = ?';
+  const getUserByUsername = db.prepare(queryStr);
+
+  const user = getUserByUsername.get(form.uname);
+
+  if (user) {
+    return res.send('Error. User already exists');
+  }
+
+  const query = `INSERT INTO users (username, password) VALUES (?, ?)`;
+  const createUser = db.prepare(query)
+  createUser.run(form.uname, form.password);
+
+  return res.redirect('http://127.0.0.1:5501/sign-in.html');
 });
 
 // Endpoint:
