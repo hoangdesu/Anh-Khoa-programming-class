@@ -36,13 +36,21 @@ app.get('/restaurants', (req, res) => {
 app.post('/login', (req, res) => {
   // console.log(req);
 
-  // console.log('form:', req.body);
+  // console.log('>> form:', req.body);
 
-  const form = req.body;
+  // const form = JSON.parse(req.body);
+
+  const { usrname, psword } = req.body;
+  
+  console.log(usrname, psword);
 
   // Data validation
-  if (!form.usrname) return res.send('Missing username');
-  else if (!form.psword) return res.send('Missing password');
+  if (!usrname) return res.send('Missing username');
+  else if (!psword) return res.send('Missing password');
+
+  // console.log(form.usrname, form.psword);
+  
+  
 
   // Switch over to using REAL database instead of mock database
   // read data from a user database
@@ -106,15 +114,17 @@ app.post('/login', (req, res) => {
   const queryStr = 'SELECT * FROM users WHERE username = ?';
   const getUserByUsername = db.prepare(queryStr);
 
-  const user = getUserByUsername.get(form.usrname);
+  const user = getUserByUsername.get(usrname);
 
   if (!user) {
-    return res.send(`user ${form.usrname} does NOT exist`);
+    return res.send(`user ${usrname} does NOT exist`);
   }
 
-  if (user.password === form.psword) {
-    console.log(`Login successfully. Welcome ${form.usrname}!`);
-    return res.redirect('http://127.0.0.1:5501/home.html');
+  if (user.password === psword) {
+    console.log(`Login successfully. Welcome ${usrname}!`);
+    // return res.redirect('http://127.0.0.1:5501/home.html');
+    return res.json({ "username": usrname, "loggedIn": true });
+    
   } else {
     console.log(`Wrong password. Get out!`);
     return res.redirect('http://127.0.0.1:5501/sign-in.html');
