@@ -197,11 +197,45 @@ app.post('/sign-up', (req, res) => {
   return res.redirect('http://127.0.0.1:5501/sign-in.html');
 });
 
+
+
 // Endpoint:
 // GET /favorites
-app.get('/favorites', (req, res) => {
-  const file = fs.readFileSync('mock-favorites.json');
-  const favorites = JSON.parse(file);
+app.get('/favorites', async (req, res) => {
+  // const file = fs.readFileSync('mock-favorites.json');
+  // const favorites = JSON.parse(file);
+
+  const { username } = req.query;
+  // console.log(req.query)
+
+  // console.log('username:', username);
+  
+  const query = `
+    SELECT name, address, phone_number, image, description, rating
+    FROM favorites
+    JOIN restaurants ON restaurants.id = favorites.restaurant_id
+    WHERE username = ?`;
+
+  const getFavorites = db.prepare(query);
+
+  const favorites = getFavorites.all(username);
+
+  console.log(favorites);
+  
+
+  if (!favorites) {
+    return res.send(`user ${username} does NOT exist`);
+  }
+
+  // if (user.password === psword) {
+  //   console.log(`Login successfully. Welcome ${usrname}!`);
+  //   // return res.redirect('http://127.0.0.1:5501/home.html');
+  //   return res.json({ "username": usrname, "loggedIn": true });
+    
+  // } else {
+  //   console.log(`Wrong password. Get out!`);
+  //   return res.redirect('http://127.0.0.1:5501/sign-in.html');
+  // }
 
   res.json(favorites);
 });

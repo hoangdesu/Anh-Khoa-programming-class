@@ -27,9 +27,9 @@ const listContainer = document.querySelector('#list-container');
 function renderRestaurant(restaurant) {
   return `
     <div class="restaurant-container">
-        <img src="${restaurant.image}" alt="${restaurant.title}">
+        <img src="${restaurant.image}" alt="${restaurant.name}">
         <div>
-            <h3>${restaurant.title}</h3>
+            <h3>${restaurant.name}</h3>
             <p>${restaurant.address}</p>
             <p>${restaurant.rating}</p>
         </div>
@@ -58,8 +58,11 @@ function remove(restaurantId) {
 //   renderRestaurantList(favorites);
 }
 
-fetch('http://localhost:3000/favorites')
+const username = localStorage.getItem('username');
+
+fetch(`http://localhost:3000/favorites?username=${username}`)
   .then((res) => res.json())
   .then((favorites) => {
     renderRestaurantList(favorites);
   });
+

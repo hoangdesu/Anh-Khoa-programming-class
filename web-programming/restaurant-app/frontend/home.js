@@ -1,3 +1,14 @@
+const username = localStorage.getItem('username');
+const loggedIn = localStorage.getItem('loggedIn');
+
+// protect route
+if (!username && !loggedIn) {
+  window.location.href = '/sign-in.html';
+}
+
+const usernameBox = document.querySelector('#username');
+usernameBox.textContent = username;
+
 fetch('http://localhost:3000/restaurants')
   .then((res) => res.json())
   .then((restaurant_list) => {
@@ -158,3 +169,12 @@ fetch('http://localhost:3000/restaurants')
 //     ... 
 //     ///put old code here
 //   })
+
+
+const logoutBtn = document.querySelector('#logout-btn')
+logoutBtn.addEventListener('click', () => {
+  localStorage.removeItem('username');
+  localStorage.removeItem('loggedIn');
+
+  window.location.href = '/sign-in.html';
+});

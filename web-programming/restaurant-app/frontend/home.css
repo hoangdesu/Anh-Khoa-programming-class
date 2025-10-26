@@ -3,6 +3,18 @@
     padding: 0;
 }
 
+#nav-bar {
+    background-color: #4c2615;
+    text-align: right;
+    padding: 20px 100px;
+
+    #username {
+        color: white;
+        display: inline;
+        margin-right: 16px;
+    }
+}
+
 #search-box {
     background-color: #4c2615;
     padding: 64px;
