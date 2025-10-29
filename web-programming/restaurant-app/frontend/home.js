@@ -16,8 +16,8 @@ fetch('http://localhost:3000/restaurants')
 
     const renderRestaurant = (res) => `
         <a href="/restaurant.html?id=${res.id}" class="restaurant-container">
-            <img src="${res.image}" alt="${res.title}">
-            <h2>${res.title}</h2>
+            <img src="${res.image}" alt="${res.name}">
+            <h2>${res.name}</h2>
             <p>${res.address}</p>
             <p>rating: ${res.rating}</p>
         </a>
@@ -65,11 +65,11 @@ fetch('http://localhost:3000/restaurants')
       } else {
         filtered_list = restaurant_list.filter((res) => {
           // matching lowercase
-          if (query.toLowerCase() === res.title.toLowerCase()) {
+          if (query.toLowerCase() === res.name.toLowerCase()) {
             return res;
           }
           // find by substring
-          else if (res.title.toLowerCase().includes(query.toLowerCase())) {
+          else if (res.name.toLowerCase().includes(query.toLowerCase())) {
             return res;
           }
         });

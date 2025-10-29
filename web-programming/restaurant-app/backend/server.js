@@ -26,10 +26,21 @@ app.get('/', (req, res) => {
 app.get('/restaurants', (req, res) => {
   // const restaurants = ['a', 'b', 'c', 'd'];
 
-  const file = fs.readFileSync('mock-data.json');
-  const restaurants = JSON.parse(file);
+  // no longer using json file
+  // const file = fs.readFileSync('mock-data.json');
+  // const restaurants = JSON.parse(file);
 
-  res.send(restaurants);
+  // using actual data from db
+  const query = `
+    SELECT id, name, address, image
+    FROM restaurants
+  `;
+
+  const getAllRestaurants = db.prepare(query);
+
+  const restaurants = getAllRestaurants.all();
+
+  res.json(restaurants);
 });
 
 // POST request: to protect sentitive data
@@ -244,16 +255,27 @@ app.get('/favorites', async (req, res) => {
 app.put('/favorites', (req, res) => {
   console.log('received a PUT request at /favorites');
 
-  const restaurant = req.body;
+  const { restaurantId, username } = req.body;
 
-  console.log('restaurant:', restaurant);
+  console.log('restaurant:', restaurantId, username);
 
-  const file = fs.readFileSync('mock-favorites.json');
-  const favorites = JSON.parse(file);
+  // No longer using a json fie to store temp data
+  // const file = fs.readFileSync('mock-favorites.json');
+  // const favorites = JSON.parse(file);
 
-  favorites.push(restaurant);
+  // favorites.push(restaurant);
 
-  fs.writeFileSync('mock-favorites.json', JSON.stringify(favorites, null, 4));
+  // fs.writeFileSync('mock-favorites.json', JSON.stringify(favorites, null, 4));
+
+  
+
+  const query = `
+    INSERT INTO favorites (restaurant_id, username)
+    VALUES (?, ?);
+  `;
+
+  const addToFavorite = db.prepare(query);
+  addToFavorite.run(restaurantId, username);
 
   // no data needed to be sent back
   return res.sendStatus(201); // 201 = OK

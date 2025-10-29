@@ -15,15 +15,15 @@ fetch('http://localhost:3000/restaurants')
     console.log('found:', restaurant);
 
     // grab containers from the DOM
-    const title = document.querySelector('#title');
+    const name = document.querySelector('#title');
     const address = document.querySelector('#address');
     const mainImage = document.querySelector('#main-image');
     const descriptionP = document.querySelector('#description');
 
 
     // injecting data into blank containers
-    title.textContent = restaurant.title;
-    document.title = restaurant.title;
+    name.textContent = restaurant.name;
+    document.title = restaurant.name;
     address.textContent = restaurant.address;
     descriptionP.textContent = restaurant.description;
 
@@ -104,6 +104,8 @@ fetch('http://localhost:3000/restaurants')
     const favBtn = document.querySelector('#fav-btn');
     const favIcon = document.querySelector('#fav-icon');
 
+    const username = localStorage.getItem('username');
+
     favBtn.addEventListener('click', () => {
         console.log(restaurant);
 
@@ -112,7 +114,10 @@ fetch('http://localhost:3000/restaurants')
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify(restaurant)
+            body: JSON.stringify({
+                restaurantId: restaurant.id,
+                username: username
+            })
         })
             .then(res => {
                 // console.log(res.status);
