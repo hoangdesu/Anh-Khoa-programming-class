@@ -1,18 +1,18 @@
-fetch('http://localhost:3000/restaurants')
+// Look for restaurant on initial load
+const urlParams = new URLSearchParams(window.location.search);
+const id = urlParams.get('id');
+
+const username = localStorage.getItem('username');
+    
+fetch(`http://localhost:3000/restaurants/${id}?username=${username}`)
   .then((res) => res.json())
-  .then((restaurant_list) => {
-    const urlParams = new URLSearchParams(window.location.search);
-    const id = urlParams.get('id');
-
-    console.log(id);
-
-    const restaurant = restaurant_list.find((res) => res.id === Number(id));
+  .then((restaurant) => {
 
     if (!restaurant) {
         console.log('404 NOT FOUND');
     }
 
-    console.log('found:', restaurant);
+    console.log('restaurant:', restaurant);
 
     // grab containers from the DOM
     const name = document.querySelector('#title');
@@ -104,7 +104,9 @@ fetch('http://localhost:3000/restaurants')
     const favBtn = document.querySelector('#fav-btn');
     const favIcon = document.querySelector('#fav-icon');
 
-    const username = localStorage.getItem('username');
+    if (restaurant.isFavorite) {
+        favIcon.src = './images/red-heart.webp';
+    }
 
     favBtn.addEventListener('click', () => {
         console.log(restaurant);

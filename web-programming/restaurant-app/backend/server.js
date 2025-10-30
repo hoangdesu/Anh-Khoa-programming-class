@@ -145,6 +145,40 @@ app.post('/login', (req, res) => {
 });
 
 
+// Endpoint to get detail for a single restaurant
+// e.g. /restaurants/1?username=anhkhoa => id: path param, username: query string
+app.get('/restaurants/:id', (req, res) => {
+  const { id } = req.params; // :id
+  
+  const restaurantQuery = 'SELECT * FROM restaurants WHERE id = ?';  
+  const getRestaurant = db.prepare(restaurantQuery);
+  const results = getRestaurant.all(id);
+
+  const { username } = req.query;
+  if (!username) return res.json(results[0]);
+
+
+  const favoriteQuery = `
+    SELECT EXISTS (
+      SELECT restaurant_id FROM favorites
+      WHERE username = ? AND restaurant_id = ?
+    ) AS isFavorite`;
+
+  const getIsFavorite = db.prepare(favoriteQuery);
+  const isFavoriteRow = getIsFavorite.get(username, id);
+  
+  if (results.length === 1) {
+    const restaurant = {
+      ...results[0],
+      isFavorite: isFavoriteRow?.isFavorite ? true : false
+    };
+
+    return res.json(restaurant);
+  } else {
+    return res.sendStatus(404);
+  }
+});
+
 
 app.post('/sign-up', (req, res) => {
   const form = req.body;
