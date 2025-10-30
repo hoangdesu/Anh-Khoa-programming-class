@@ -3,13 +3,12 @@ const urlParams = new URLSearchParams(window.location.search);
 const id = urlParams.get('id');
 
 const username = localStorage.getItem('username');
-    
+
 fetch(`http://localhost:3000/restaurants/${id}?username=${username}`)
   .then((res) => res.json())
   .then((restaurant) => {
-
     if (!restaurant) {
-        console.log('404 NOT FOUND');
+      console.log('404 NOT FOUND');
     }
 
     console.log('restaurant:', restaurant);
@@ -19,7 +18,6 @@ fetch(`http://localhost:3000/restaurants/${id}?username=${username}`)
     const address = document.querySelector('#address');
     const mainImage = document.querySelector('#main-image');
     const descriptionP = document.querySelector('#description');
-
 
     // injecting data into blank containers
     name.textContent = restaurant.name;
@@ -34,103 +32,131 @@ fetch(`http://localhost:3000/restaurants/${id}?username=${username}`)
     //     console.log(favorites);
     // });
 
-
     // Thumbnails
     const thumbnailsContainer = document.querySelector('#thumbnails-container');
 
     // console.log(thumbnailsContainer.);
 
-
     const thumbnailList = [
-        'test-1.jpg',
-        'test-2.jpg',
-        'test-3.jpg',
-        'test-4.jpg',
+      'test-1.jpg',
+      'test-2.jpg',
+      'test-3.jpg',
+      'test-4.jpg',
     ];
 
-    thumbnailList.forEach(thumbnail => {
-        const img = `<img src="./images/${thumbnail}" alt="">`;
+    thumbnailList.forEach((thumbnail) => {
+      const img = `<img src="./images/${thumbnail}" alt="">`;
 
-        thumbnailsContainer.innerHTML += img;
+      thumbnailsContainer.innerHTML += img;
     });
 
     const thumbnailImages = thumbnailsContainer.querySelectorAll('img');
     console.log(thumbnailImages);
 
-    thumbnailImages.forEach(thumbnailImg => {
-        thumbnailImg.addEventListener('mouseenter', (evt) => {
-            console.log('hovering on...', thumbnailImg.src);
-            mainImage.src = thumbnailImg.src;
-        });
+    thumbnailImages.forEach((thumbnailImg) => {
+      thumbnailImg.addEventListener('mouseenter', (evt) => {
+        console.log('hovering on...', thumbnailImg.src);
+        mainImage.src = thumbnailImg.src;
+      });
     });
 
-    thumbnailImages.forEach(thumbnailImg => {
-        thumbnailImg.addEventListener('mouseleave', (evt) => {
-            mainImage.src = restaurant.image;
-        });
+    thumbnailImages.forEach((thumbnailImg) => {
+      thumbnailImg.addEventListener('mouseleave', (evt) => {
+        mainImage.src = restaurant.image;
+      });
     });
-
 
     // Modal
-    const confirmModalContainer = document.querySelector('#confirm-modal-container');
+    const confirmModalContainer = document.querySelector(
+      '#confirm-modal-container'
+    );
     const dateInput = document.querySelector('#date-input');
     const timeInput = document.querySelector('#time-input');
     const guestsInput = document.querySelector('#guests-input');
     const dateConfirm = document.querySelector('#date-confirm');
     const timeConfirm = document.querySelector('#time-confirm');
     const guestsConfirm = document.querySelector('#guests-confirm');
-    
 
     confirmModalContainer.addEventListener('click', (e) => {
-        if (e.target === confirmModalContainer) {
-            confirmModalContainer.style.display = 'none';
-        }         
+      if (e.target === confirmModalContainer) {
+        confirmModalContainer.style.display = 'none';
+      }
     });
 
     const reserveNowBtn = document.querySelector('#reserve-now-btn');
-    reserveNowBtn.addEventListener('click', () => {
-        if (!dateInput.value || timeInput.value || guestsInput.value)
-            return;
-        
-        dateConfirm.textContent = dateInput.value;
-        timeConfirm.textContent = timeInput.value;
-        guestsConfirm.textContent = guestsInput.value;
 
-        confirmModalContainer.style.display = 'block';
+    confirmModalContainer.style.display = 'block'; // for testing only
+
+    reserveNowBtn.addEventListener('click', () => {
+      if (!dateInput.value || !timeInput.value || !guestsInput.value) return;
+
+      dateConfirm.textContent = dateInput.value;
+      timeConfirm.textContent = timeInput.value;
+      guestsConfirm.textContent = guestsInput.value;
+
+      confirmModalContainer.style.display = 'block';
     });
 
+    const btnConfirmBooking = document.querySelector('#btn-confirm-booking');
+    btnConfirmBooking.addEventListener('click', () => {
+      const bookingDetails = {
+        username: username,
+        restaurant_id: restaurant.id,
+        date: dateInput.value,
+        time: timeInput.value,
+        guests: guestsInput.value,
+      };
+
+      fetch('http://localhost:3000/reservations', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        // body: TODO add booking details inside body
+        body: JSON.stringify(bookingDetails)
+      })
+        .then((res) => json())
+        .then((data) => {
+          // ...
+        });
+    });
 
     // Feature: add the current restaurant to favorite list
     const favBtn = document.querySelector('#fav-btn');
     const favIcon = document.querySelector('#fav-icon');
 
     if (restaurant.isFavorite) {
-        favIcon.src = './images/red-heart.webp';
+      favIcon.src = './images/red-heart.webp';
     }
 
     favBtn.addEventListener('click', () => {
-        console.log(restaurant);
+      console.log(restaurant);
 
-        fetch('http://localhost:3000/favorites', {
-            method: 'PUT',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                restaurantId: restaurant.id,
-                username: username
-            })
+      fetch('http://localhost:3000/favorites', {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          restaurantId: restaurant.id,
+          username: username,
+        }),
+      })
+        .then((res) => {
+          // console.log(res.status);
+          // if (res.status === 201) {
+          //     favIcon.src = './images/red-heart.webp';
+          // }
+
+          return res.json();
         })
-            .then(res => {
-                // console.log(res.status);
-                if (res.status === 201) {
-                    favIcon.src = './images/red-heart.webp';
-                }
-            })
-        
-    })
+        .then((isFavorite) => {
+          // console.log('data:', data);
+          if (isFavorite) {
+            favIcon.src = './images/red-heart.webp';
+          } else {
+            favIcon.src = './images/heart-icon.webp';
+          }
+        });
+    });
   });
-
-
-
-

@@ -24,7 +24,20 @@
 
 const listContainer = document.querySelector('#list-container');
 
+
+// Initial load
+const username = localStorage.getItem('username');
+
+fetch(`http://localhost:3000/favorites?username=${username}`)
+  .then((res) => res.json())
+  .then((favorites) => {
+    renderRestaurantList(favorites);
+  });
+
+
 function renderRestaurant(restaurant) {
+  console.log(restaurant);
+
   return `
     <div class="restaurant-container">
         <img src="${restaurant.image}" alt="${restaurant.name}">
@@ -35,7 +48,7 @@ function renderRestaurant(restaurant) {
         </div>
         <button onclick="remove(${restaurant.id})">Remove</button>
     </div>
-`;
+  `;
 }
 
 const renderRestaurantList = (favorites) => {
@@ -50,19 +63,39 @@ const renderRestaurantList = (favorites) => {
 function remove(restaurantId) {
   console.log('removing...', restaurantId);
 
-  const filteredFavorites = favorites.filter((fav) => fav.id !== restaurantId);
-  console.log(filteredFavorites);
+  // const filteredFavorites = favorites.filter((fav) => fav.id !== restaurantId);
+  // console.log(filteredFavorites);
 
-  favorites = filteredFavorites;
+  // favorites = filteredFavorites;
 
-//   renderRestaurantList(favorites);
+  fetch('http://localhost:3000/favorites', {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      restaurantId: restaurantId,
+      username: username,
+    }),
+  })
+    .then((res) => res.json())
+    .then((isFavorite) => {
+      // console.log('data:', data);
+      // if (isFavorite) {
+      //   favIcon.src = './images/red-heart.webp';
+      // } else {
+      //   favIcon.src = './images/heart-icon.webp';
+      // }
+
+      fetch(`http://localhost:3000/favorites?username=${username}`)
+        .then((res) => res.json())
+        .then((favorites) => {
+          renderRestaurantList(favorites);
+        });
+
+    });
+
+  //   renderRestaurantList(favorites);
 }
 
-const username = localStorage.getItem('username');
-
-fetch(`http://localhost:3000/favorites?username=${username}`)
-  .then((res) => res.json())
-  .then((favorites) => {
-    renderRestaurantList(favorites);
-  });
 

@@ -52,7 +52,7 @@ app.post('/login', (req, res) => {
   // const form = JSON.parse(req.body);
 
   const { usrname, psword } = req.body;
-  
+
   console.log(usrname, psword);
 
   // Data validation
@@ -60,8 +60,6 @@ app.post('/login', (req, res) => {
   else if (!psword) return res.send('Missing password');
 
   // console.log(form.usrname, form.psword);
-  
-  
 
   // Switch over to using REAL database instead of mock database
   // read data from a user database
@@ -121,7 +119,6 @@ app.post('/login', (req, res) => {
   //   );
   // });
 
-
   const queryStr = 'SELECT * FROM users WHERE username = ?';
   const getUserByUsername = db.prepare(queryStr);
 
@@ -134,8 +131,7 @@ app.post('/login', (req, res) => {
   if (user.password === psword) {
     console.log(`Login successfully. Welcome ${usrname}!`);
     // return res.redirect('http://127.0.0.1:5501/home.html');
-    return res.json({ "username": usrname, "loggedIn": true });
-    
+    return res.json({ username: usrname, loggedIn: true });
   } else {
     console.log(`Wrong password. Get out!`);
     return res.redirect('http://127.0.0.1:5501/sign-in.html');
@@ -144,19 +140,17 @@ app.post('/login', (req, res) => {
   // console.log('/login: ', user);
 });
 
-
 // Endpoint to get detail for a single restaurant
 // e.g. /restaurants/1?username=anhkhoa => id: path param, username: query string
 app.get('/restaurants/:id', (req, res) => {
   const { id } = req.params; // :id
-  
-  const restaurantQuery = 'SELECT * FROM restaurants WHERE id = ?';  
+
+  const restaurantQuery = 'SELECT * FROM restaurants WHERE id = ?';
   const getRestaurant = db.prepare(restaurantQuery);
   const results = getRestaurant.all(id);
 
   const { username } = req.query;
   if (!username) return res.json(results[0]);
-
 
   const favoriteQuery = `
     SELECT EXISTS (
@@ -166,11 +160,11 @@ app.get('/restaurants/:id', (req, res) => {
 
   const getIsFavorite = db.prepare(favoriteQuery);
   const isFavoriteRow = getIsFavorite.get(username, id);
-  
+
   if (results.length === 1) {
     const restaurant = {
       ...results[0],
-      isFavorite: isFavoriteRow?.isFavorite ? true : false
+      isFavorite: isFavoriteRow?.isFavorite ? true : false,
     };
 
     return res.json(restaurant);
@@ -178,7 +172,6 @@ app.get('/restaurants/:id', (req, res) => {
     return res.sendStatus(404);
   }
 });
-
 
 app.post('/sign-up', (req, res) => {
   const form = req.body;
@@ -224,7 +217,6 @@ app.post('/sign-up', (req, res) => {
   //   return res.redirect('http://127.0.0.1:5501/sign-in.html');
   // });
 
-
   // check if user not already exists
   const queryStr = 'SELECT * FROM users WHERE username = ?';
   const getUserByUsername = db.prepare(queryStr);
@@ -236,13 +228,11 @@ app.post('/sign-up', (req, res) => {
   }
 
   const query = `INSERT INTO users (username, password) VALUES (?, ?)`;
-  const createUser = db.prepare(query)
+  const createUser = db.prepare(query);
   createUser.run(form.uname, form.password);
 
   return res.redirect('http://127.0.0.1:5501/sign-in.html');
 });
-
-
 
 // Endpoint:
 // GET /favorites
@@ -254,9 +244,9 @@ app.get('/favorites', async (req, res) => {
   // console.log(req.query)
 
   // console.log('username:', username);
-  
+
   const query = `
-    SELECT name, address, phone_number, image, description, rating
+    SELECT id, name, address, phone_number, image, description, rating
     FROM favorites
     JOIN restaurants ON restaurants.id = favorites.restaurant_id
     WHERE username = ?`;
@@ -266,7 +256,6 @@ app.get('/favorites', async (req, res) => {
   const favorites = getFavorites.all(username);
 
   console.log(favorites);
-  
 
   if (!favorites) {
     return res.send(`user ${username} does NOT exist`);
@@ -276,7 +265,7 @@ app.get('/favorites', async (req, res) => {
   //   console.log(`Login successfully. Welcome ${usrname}!`);
   //   // return res.redirect('http://127.0.0.1:5501/home.html');
   //   return res.json({ "username": usrname, "loggedIn": true });
-    
+
   // } else {
   //   console.log(`Wrong password. Get out!`);
   //   return res.redirect('http://127.0.0.1:5501/sign-in.html');
@@ -301,21 +290,53 @@ app.put('/favorites', (req, res) => {
 
   // fs.writeFileSync('mock-favorites.json', JSON.stringify(favorites, null, 4));
 
-  
+  const favoriteQuery = `
+    SELECT EXISTS (
+      SELECT restaurant_id FROM favorites
+      WHERE username = ? AND restaurant_id = ?
+    ) AS isFavorite`;
 
-  const query = `
-    INSERT INTO favorites (restaurant_id, username)
-    VALUES (?, ?);
-  `;
+  const getIsFavorite = db.prepare(favoriteQuery);
+  const isFavoriteRow = getIsFavorite.get(username, restaurantId);
+  const isFavorite = isFavoriteRow?.isFavorite ? true : false;
 
-  const addToFavorite = db.prepare(query);
-  addToFavorite.run(restaurantId, username);
+  // if not yet inside favorite, add it to the list
+  if (!isFavorite) {
+    const query = `
+      INSERT INTO favorites (restaurant_id, username)
+      VALUES (?, ?);
+    `;
 
-  // no data needed to be sent back
-  return res.sendStatus(201); // 201 = OK
+    const addToFavorite = db.prepare(query);
+    addToFavorite.run(restaurantId, username);
+
+    // no data needed to be sent back
+    return res.status(201).send(true); // 201 = OK
+  } 
+
+  // if restaurant is already in fav, remove it
+  else {
+    const query = `
+      DELETE FROM favorites
+      WHERE restaurant_id = ? AND username = ?`;
+
+    const removeFromFavorite = db.prepare(query);
+    removeFromFavorite.run(restaurantId, username);
+
+    // no data needed to be sent back
+    return res.status(200).send(false); // 200 = OK
+  }
 });
 
-// DELETE /favorites
+
+app.post('/reservations', (req, res) => {
+  console.log('received a new reservation');
+  
+  console.log(req.body);
+  
+  res.send('received a new reservation');
+});
+
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);
