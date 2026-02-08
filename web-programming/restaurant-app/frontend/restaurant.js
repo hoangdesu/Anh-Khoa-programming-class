@@ -85,7 +85,9 @@ fetch(`http://localhost:3000/restaurants/${id}?username=${username}`)
 
     const reserveNowBtn = document.querySelector('#reserve-now-btn');
 
-    confirmModalContainer.style.display = 'block'; // for testing only
+    // confirmModalContainer.style.display = 'block'; // for testing only
+    confirmModalContainer.style.display = 'none';
+
 
     reserveNowBtn.addEventListener('click', () => {
       if (!dateInput.value || !timeInput.value || !guestsInput.value) return;
@@ -158,5 +160,24 @@ fetch(`http://localhost:3000/restaurants/${id}?username=${username}`)
             favIcon.src = './images/heart-icon.webp';
           }
         });
+    });
+  });
+
+
+// backtick
+const reviewsContainer = document.querySelector('#reviews-container');
+
+fetch(`http://localhost:3000/reviews/${id}`)
+  .then(res => res.json())
+  .then(reviews => {
+    console.log(reviews);
+    reviews.forEach(review => {
+      reviewsContainer.innerHTML += `
+        <div class="review-card">
+            <h5>${review.username}</h5>
+            <p>${review.content}</p>
+            <p>Rating: ${review.ratings}</p>
+        </div>        
+      `
     });
   });

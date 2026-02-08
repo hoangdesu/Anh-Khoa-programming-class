@@ -58,3 +58,27 @@ JOIN favorites ON restaurants.id = favorites.restaurant_id
 WHERE favorites.username = 'anhkhoa';
 
 
+CREATE TABLE reviews (
+    id INTEGER PRIMARY KEY,
+    username VARCHAR(50) REFERENCES users(username),
+    restaurant_id INTEGER REFERENCES restaurants(id),
+    content VARCHAR NOT NULL,
+    ratings INTEGER NOT NULL,
+    created_at TEXT DEFAULT (datetime('now'))
+);
+
+
+DROP TABLE reviews;
+
+INSERT INTO reviews (username, restaurant_id, content, ratings)
+VALUES ('brian', 1, 'waoooo', 5);
+
+INSERT INTO reviews (username, restaurant_id, content, ratings)
+VALUES ('anhkhoa', 1, 'do ec :<', 1);
+
+
+INSERT INTO reviews (username, restaurant_id, content, ratings)
+VALUES ('totowolf', 2, 'very gud :D', 4);
+
+SELECT * FROM reviews
+WHERE restaurant_id = 1;
