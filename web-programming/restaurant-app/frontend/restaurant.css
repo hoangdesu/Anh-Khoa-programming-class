@@ -175,3 +175,21 @@ main {
     padding: 32px;
 }
 
+.review-card {
+    .review-card-row1 {
+        display: flex;
+        flex-direction: row;
+        gap: 16px;
+        align-items: center;
+
+        .review-card-col1 img {
+            border-radius: 50%;
+            width: 70px;
+        }
+    }
+
+    .reviews-rating img {
+        width: 20px;
+    }
+
+}

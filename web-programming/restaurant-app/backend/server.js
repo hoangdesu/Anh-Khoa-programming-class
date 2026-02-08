@@ -340,7 +340,7 @@ app.post('/reservations', (req, res) => {
 
 // REVIEWS
 app.get('/reviews/:restaurantId', (req, res) => {
-  const { restaurantId } = req.params;
+  const { restaurantId } = req.params; // path params
 
   const reviewsQuery = 'SELECT * FROM reviews WHERE restaurant_id = ?';
   const getReviews = db.prepare(reviewsQuery);

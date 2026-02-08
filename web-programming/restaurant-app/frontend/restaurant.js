@@ -172,12 +172,34 @@ fetch(`http://localhost:3000/reviews/${id}`)
   .then(reviews => {
     console.log(reviews);
     reviews.forEach(review => {
-      reviewsContainer.innerHTML += `
+      // reviewsContainer.innerHTML += `
+      //   <div class="review-card">
+      //       <h5>${review.username}</h5>
+      //       <p>${review.content}</p>
+      //       <p>Rating: ${review.ratings}</p>
+      //   </div>        
+      // `;
+
+      const reviewCardTemplate = `
         <div class="review-card">
-            <h5>${review.username}</h5>
-            <p>${review.content}</p>
-            <p>Rating: ${review.ratings}</p>
-        </div>        
-      `
+            <div class="review-card-row1">
+                <div class="review-card-col1">
+                    <img src="https://play-lh.googleusercontent.com/_3kdCh5aDbyRUWLVhQ9ejml3XQ2LiqV-YuyaX9pHHUCFruTCrQwJmcXbridaWXqUKA=w256" alt="">
+                </div>
+                <div class="review-card-col2">
+                    <h5>${review.username}</h5>
+                    <p>Created at: ${review.created_at}</p>
+                </div>
+            </div>
+
+            <div class="reviews-rating">
+              ${'<img src="images/star.png" alt="">'.repeat(review.ratings)}
+            </div>
+
+            <p class="reviews-content">${review.content}</p>
+        </div>
+      `;
+
+      reviewsContainer.innerHTML += reviewCardTemplate;
     });
   });
