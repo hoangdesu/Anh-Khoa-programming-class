@@ -1,0 +1,321 @@
+@import url("https://fonts.googleapis.com/css2?family=Hammersmith+One&family=Prompt:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+h1 {
+        font-family: "Hammersmith One", sans-serif;
+        font-weight: 400;
+        font-style: normal;
+        font-size: 2.5rem;
+    }
+
+h2 {
+        font-family: "Prompt", sans-serif;
+        font-weight: 300;
+        font-style: normal;
+    }
+
+p {
+        font-family: "Prompt", sans-serif;
+        font-weight: 300;
+        font-style: normal;
+}
+
+span {
+        font-family: "Prompt", sans-serif;
+        font-weight: 300;
+        font-style: normal;
+}
+
+
+
+:root {
+    --primary-color: #d9d9d9;
+    --background2: #a6a6a6;
+}
+
+main {
+    width: 1200px;
+    margin: auto;
+}
+
+#row1 {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+    justify-content: space-between;
+}
+
+#row2 {
+    display: flex;
+    flex-direction: row;
+    gap: 32px;
+}
+
+#imgcontainer {
+    width: 100%;
+
+    #image {
+        width: 100%;
+        height: 400px;
+        object-fit: cover;
+    }
+}
+
+#thumbnail-container {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    img {
+        width: 130px;
+        height: 100px;
+        object-fit: cover;
+    }
+}
+
+
+#menu-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 16px; 
+
+    img {
+        width: 50%;
+        flex-direction: row;
+        align-items: center;
+    }   
+}
+
+
+#row2_5 {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    &>div:first-child {
+        margin-top: 16px;
+        /* border-bottom: 1px solid black; */
+    }
+
+    #description-box {
+        border-bottom: 1px solid black;
+    }
+}
+
+#row3 {
+    border-bottom: 1px solid black;
+    padding-bottom: 64px;
+
+    &>div:first-child {
+        margin-top: 16px;
+        /* border-bottom: 1px solid black; */
+    }
+
+   
+}
+
+
+
+#reservation-box {
+    background: var(--primary-color);
+    border-radius: 20px;
+    padding: 16px;
+    text-align: center;
+    width: 300px;
+
+    button {
+        font-family: "Hammersmith One", sans-serif;
+        font-weight: 50;
+        font-style: normal;
+        font-size: 13px;
+        padding: 8px 23px;
+        border-radius: 32px;
+        border: none;
+    }
+
+    h2 {
+        font-family: "Hammersmith One", sans-serif;
+        font-weight: 300;
+        font-style: normal;
+    }
+
+    label {
+        font-family: "Prompt", sans-serif;
+        font-weight: 300;
+        font-style: normal;
+    }
+
+}
+
+button {
+    font-family: "Hammersmith One", sans-serif;
+    font-weight: 50;
+    font-style: normal;
+    font-size: 17px;
+    padding: 16px 28px;
+    border-radius: 32px;
+    border: none;
+
+
+}
+
+
+
+
+
+#pickers-container {
+    background: var(--background2);
+}
+
+
+#pickers-row1 {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.picker-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+#pickers-row2 {
+    display: flex;
+    justify-content: center;
+}
+
+
+
+
+
+.subrow1 {
+    display: flex;
+    gap: 16px;
+    
+
+    img {
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        object-fit: cover;
+    }
+}
+
+.subrow2 {
+   
+    img {
+        height: 75px;
+    }
+}
+
+.subrow3 {
+    font-size: 16px;
+}
+
+
+#reviews {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 48px;
+    padding: 16px;
+    align-items: center;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+
+#confirm-modal {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 200vw;
+    height: 200vh;
+    background: rgba(0, 0, 0, 0.5);
+    display: none;
+    justify-items: center;
+    align-content: center;
+
+}
+
+#confirm-modal-box {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    text-align: center;
+    justify-content: space-between;
+    background: #d9d9d9;
+    width: 50vw;
+    height: 50vh;
+    border: 16px;
+    padding: 32px;
+    border-radius: 20px;
+    margin-top: 180px;
+    margin-left: 350px;
+}
+
+#row3-5 {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    button {
+        margin-top: 38px;
+        height: 16px;
+        display: flex;
+        align-items: center;
+        text-align: center;
+    }
+}
+
+#review-modal {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 250vh;
+    background: rgba(0, 0, 0, 0.5);
+    display: none;
+    justify-items: center;
+    align-content: center;
+
+}
+
+#review-modal-box {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    text-align: center;
+    justify-content: space-between;
+    background: #d9d9d9;
+    width: 50vw;
+    height: 50vh;
+    border: 16px;
+    padding: 32px;
+    border-radius: 20px;
+    margin-top: 1040px;
+    margin-left: 230px;
+}
+
+textarea {
+    resize: none;
+    height: 32vh;
+}
+
+#review-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.star-rating .star {
+  font-size: 2.6em; 
+  color: black; 
+  cursor: pointer;
+}
+
+.star-rating .star:hover,
+.star-rating .star.selected {
+  color: yellow; 
+}

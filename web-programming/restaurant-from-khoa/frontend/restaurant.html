@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="restaurant.css">
+</head>
+
+<body>
+    <nav id="nav-bar">
+        <p id="username"></p>
+        <button id="logout-btn">Log out</button>
+    </nav>
+
+    <main>
+        <div id="row1">
+            <div>
+                <h1 id="name"></h1>
+                <span>
+                    <img src="/images/icon.webp" alt="" width="20">
+                    <span id="address"></span>
+                </span>
+            </div>
+
+            <div>
+                <button id="favbtn">
+                    <img src="/images/favorite-icon.png" alt="" width="20" id="fav-icon">
+                    <span>Add to favorite</span>
+                </button>
+            </div>
+        </div>
+
+        <div id="row2">
+            <div id="imgcontainer">
+                <img src="" alt="" id="image">
+
+                <div id="thumbnail-container">
+
+                </div>
+            </div>
+
+            <div id="maps">
+                <iframe
+                    id="map-iframe"
+                    width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade">
+                </iframe>
+
+            </div>
+        </div>
+
+
+
+        <section id="row2_5">
+            <div id="description-box">
+                <p id="description"></p>
+            </div>
+
+            <div>
+                <div id="reservation-box">
+                    <h2>Reservation</h2>
+
+                    <div id="pickers-container">
+                        <div id="pickers-row1">
+
+                            <div class="picker-container">
+                                <label for="date">Date</label>
+                                <input type="date" name="" id="date-input">
+                            </div>
+
+                            <div class="picker-container">
+                                <label for="time">Time</label>
+                                <input type="time" name="" id="time-input">
+                            </div>
+
+                        </div>
+
+                        <div id="pickers-row2">
+                            <div class="picker-container">
+                                <label for="number">Guest</label>
+                                <input type="number" name="" id="guest-input">
+                            </div>
+                        </div>
+
+                        <button id="reserve">Reserve Now!</button>
+                    </div>
+                </div>
+            </div>
+
+
+            <div id="confirm-modal">
+                <div id="confirm-modal-box">
+                    <h1>Finish your reservation</h1>
+
+                    <table>
+                        <tr>
+                            <td>Date: </td>
+                            <td><p id="date-confirm"></p></td>
+                            
+                        </tr>
+                        <tr>
+                            <td>Time: </td>
+                            <td><p id="time-confirm"></p></td>
+                        </tr>
+                        <tr>
+                            <td>No. of Guests:</td>
+                            <td><p id="guest-confirm"></p></td>
+                        </tr>
+                    </table>
+                    <button id="confirm">Confirm booking</button>
+
+                    <p id="success-msg"></p>
+                </div>
+
+            </div>
+
+
+        </section>
+
+
+
+
+        <div id="row3">
+            <h1>Menu</h1>
+            <div id="menu-container">
+                <img src="https://katinat.vn/wp-content/uploads/2024/12/BD_44X28CM-1.jpg" alt="">
+                <img src="https://katinat.vn/wp-content/uploads/2024/12/BD_44X28CM-1.jpg" alt="">
+            </div>
+        </div>
+
+
+        <div id="row3-5">
+            <h1>Review</h1>
+
+            <button id="review">+ add review</button>
+
+            <div id="review-modal">
+                <h1>Review</h1>
+
+                <div id="review-modal-box">
+                    <h1>Write here</h1>
+                    <textarea rows="10" id="review-content"></textarea>
+
+                    <select name="" id="review-rating">
+                        <option value="1">
+                            <span class="star" data-rating="1">&#9734;</span>
+                        </option>
+                        <option value="2">
+                            <span class="star" data-rating="1">&#9734;</span>
+                            <span class="star" data-rating="1">&#9734;</span>
+                        </option>
+                        <option value="3">
+                            <span class="star" data-rating="1">&#9734;</span>
+                            <span class="star" data-rating="1">&#9734;</span>
+                            <span class="star" data-rating="1">&#9734;</span>
+                        </option>
+                        <option value="4">
+                            <span class="star" data-rating="1">&#9734;</span>
+                            <span class="star" data-rating="1">&#9734;</span>
+                            <span class="star" data-rating="1">&#9734;</span>
+                            <span class="star" data-rating="1">&#9734;</span>
+                        </option>
+                        <option value="5">
+                            <span class="star" data-rating="1">&#9734;</span>
+                            <span class="star" data-rating="1">&#9734;</span>
+                            <span class="star" data-rating="1">&#9734;</span>
+                            <span class="star" data-rating="1">&#9734;</span>
+                            <span class="star" data-rating="1">&#9734;</span>
+                        </option>
+                    </select>
+                    
+                    <div id="review-row">
+                         <!-- <div class="star-rating">
+                            <span class="star" data-rating="1">&#9734;</span>
+                            <span class="star" data-rating="2">&#9734;</span>
+                            <span class="star" data-rating="3">&#9734;</span>
+                            <span class="star" data-rating="4">&#9734;</span>
+                            <span class="star" data-rating="5">&#9734;</span>
+                        </div> -->
+                        <button id="btn-submit-review">Submit</button>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+
+
+
+        <section id="row4">
+
+            <div id="reviews">
+
+               
+            </div>
+        </section>
+
+
+
+    </main>
+
+
+    <script src="restaurant.js"></script>
+
+</body>
+
+</html>

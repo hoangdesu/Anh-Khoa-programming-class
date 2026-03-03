@@ -1,0 +1,199 @@
+@import url("https://fonts.googleapis.com/css2?family=Hammersmith+One&family=Prompt:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
+#nav-bar {
+    background-color: #4c2615;
+    text-align: right;
+    padding: 20px 100px;
+
+    #username {
+        text-align: right;
+        color: white;
+        margin: 0;
+        display: inline;
+        margin-right: 16px;
+    }
+
+    button {
+            font-family: "Prompt", sans-serif;
+            font-weight: 500;
+            font-style: normal;
+            font-size: 1.2rem;
+            padding: 16px 32px;
+            border-radius: 32px;
+            border: none;
+        }
+}
+
+
+#searchbox {
+    background-color: #4c2615;
+    padding: 64px; 
+
+    #search-form {
+        position: relative;
+
+        button {
+            position: absolute;
+            top: 6px;
+            right: -10px;
+            width: 20px;
+            height: 20px;
+            border-radius: 50px;
+            padding: 14px;
+            align-items: center;
+            justify-content: center;
+            font-size: 10px;
+            display: none;
+            border: 1px solid black;
+        }
+    }
+
+    #top-row {
+        input {
+            width: 100%;
+            border-radius: 30px;
+            padding: 10px;
+        }
+    }
+
+    #bottom-row {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        margin-top: 32px;
+    }
+
+        button {
+            font-family: "Prompt", sans-serif;
+            font-weight: 500;
+            font-style: normal;
+            font-size: 1.2rem;
+            padding: 16px 32px;
+            border-radius: 32px;
+            border: none;
+        }
+}
+
+#restaurant-list {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 48px;
+    /* padding-left: 64px;
+    padding-right: 64px; */
+    padding: 0 64px;
+
+    .restaurant-container {
+        text-decoration: none;
+        color: black;
+
+        img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+        }
+    }
+    
+    .restaurant-container:hover {
+        border: 1px solid red; 
+    }
+}
+
+main {
+
+    h1 {
+        text-align: center;
+
+    }
+}
+
+h1 {
+        font-family: "Hammersmith One", sans-serif;
+        font-weight: 400;
+        font-style: normal;
+        font-size: 2.5rem;
+    }
+
+h2 {
+        font-family: "Prompt", sans-serif;
+        font-weight: 300;
+        font-style: normal;
+    }
+
+p {
+        font-family: "Prompt", sans-serif;
+        font-weight: 300;
+        font-style: normal;
+}
+
+
+#modal {
+    position: absolute;
+    top: 0;
+    width: 100vw;
+    height: 150vh;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-items: center;
+    align-content: center;
+    
+    #modal-container {
+        background: #d9d9d9;
+        width: 600px;
+        border: 16px;
+        padding: 32px;
+        border-radius: 20px;
+        margin-bottom: 320px;
+    }
+    
+    .modal-btn-container {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+    }
+
+    .modal-btn {
+        font-family: "Prompt", sans-serif;
+        font-weight: 500;
+        font-style: normal;
+        font-size: 1rem;
+        padding: 16px 32px;
+        border-radius: 32px;
+        border: 1px solid transparent;
+        transition: all 200ms ease;
+    }
+
+    .modal-btn:hover {
+        border: 1px solid red;
+        cursor: pointer;
+    }
+
+    .modal-btn-selected {
+        background: red;
+    }
+
+    #save-btn, #clear-btn {
+        margin-top: 50px;
+        width: 100%;
+        font-family: "Prompt", sans-serif;
+        font-weight: 500;
+        font-style: normal;
+        font-size: 1rem;
+        padding: 16px 32px;
+        border-radius: 32px;
+        border: 1px solid transparent;
+        transition: all 200ms ease;
+    }
+
+    #save-btn:hover, #clear-btn:hover {
+         border: 1px solid red;
+    }
+
+}
+
+
+

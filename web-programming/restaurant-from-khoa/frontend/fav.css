@@ -1,0 +1,86 @@
+@import url("https://fonts.googleapis.com/css2?family=Hammersmith+One&family=Prompt:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+
+#top-row {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+
+}
+
+
+#banner {
+    background: #4c2615;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 32px;
+    padding: 32px;
+    
+    img {
+        width: 150px;
+    }
+
+    h1 {
+        font-family: "Hammersmith One", sans-serif;
+        font-weight: 400;
+        font-style: normal;
+        font-size: 2.5rem;
+        color: white;
+    };
+}
+
+#list-container {
+    margin-top: 32px;
+
+    .restaurant-container {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-around;
+        padding: 32px;
+
+        img {
+            width: 200px;
+            height: 150px;
+            object-fit: cover;
+        }
+
+        div {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        };
+
+            h3 {
+                font-family: "Prompt", sans-serif;
+                font-weight: 500;
+                font-style: normal;
+                font-size: larger;
+            };
+
+            p {
+                font-family: "Prompt", sans-serif;
+                font-weight: 300;
+                font-style: normal;
+            };
+
+            button {
+                font-family: "Prompt", sans-serif;
+                font-weight: 500;
+                font-style: normal;
+                font-size: 1.2rem;
+                padding: 16px 32px;
+                border-radius: 32px;
+                border: none;
+            };
+    }
+}
+
+

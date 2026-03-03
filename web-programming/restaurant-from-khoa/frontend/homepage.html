@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="homepage.css">
+</head>
+
+<body>
+
+    <nav id="nav-bar">
+        <p id="username"></p>
+        <button id="logout-btn">Log out</button>
+    </nav>
+
+    <div id="searchbox">
+
+        <div id="top-row">
+            <form action="" id="search-form">
+                <input id="search-input" type="text" placeholder="Search something">
+                <button id="clear-search" type="button">❌</button>
+            </form>
+
+        </div>
+        <div id="bottom-row">
+            <a href="/favorite.html">
+                <button>list of favorite</button>
+            </a>
+
+            <div id="reservation">
+                <a href="/reservation.html">
+                    <button>reservations</button>
+                </a>
+            </div>
+
+
+            <button id="filter">Filter</button>
+        </div>
+    </div>
+
+
+    <main>
+        <h1>For you</h1>
+        <div id="restaurant-list"></div>
+    </main>
+
+
+    <div id="modal">
+        <div id="modal-container">
+            <!-- <h2>Location</h2>
+            <div class="modal-btn-container" id="location-container">
+                <button class="modal-btn">within 5km</button>
+                <button class="modal-btn">with parking</button>
+                <button class="modal-btn">riverside</button>
+                <button class="modal-btn">rooftop</button>
+            </div> -->
+
+            <h2>Price</h2>
+            <div class="modal-btn-container" id="price-container">
+                <button class="modal-btn" data-pricerange="1">$</button>
+                <button class="modal-btn" data-pricerange="2">$$</button>
+                <button class="modal-btn" data-pricerange="3">$$$</button>
+            </div>
+
+            <h2>Category</h2>
+            <div class="modal-btn-container" id="category-container">
+                <button class="modal-btn" data-category="asian">Asian food</button>
+                <button class="modal-btn" data-category="finedining">Fine dining</button>
+                <button class="modal-btn" data-category="desert">Desert</button>
+                <button class="modal-btn" data-category="western">Western</button>
+            </div>
+
+            <button id="clear-btn">Clear filters</button>
+            <button id="save-btn">Submit</button>
+        </div>
+    </div>
+
+    <script src="homepage.js"></script>
+</body>
+
+</html>
