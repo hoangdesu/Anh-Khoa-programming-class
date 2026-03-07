@@ -123,7 +123,6 @@ fetch('http://localhost:3000/restaurants')
         const saveBtn = document.querySelector('#save-btn');
 
         saveBtn.onclick = (e) => {
-
             const selectedButtons = document.querySelectorAll('.modal-btn-selected');
             console.log(selectedButtons);
 
@@ -172,6 +171,7 @@ fetch('http://localhost:3000/restaurants')
                 })   
         }
     });
+
 
 const clearBtn = document.querySelector('#clear-btn');
 clearBtn.addEventListener('click', () => {
