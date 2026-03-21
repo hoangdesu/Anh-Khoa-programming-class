@@ -27,6 +27,16 @@
     }
 }
 
+#car-brand-buttons {
+  /* border: 1px solid red; */
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  gap: 10px;
+}
+
 /* CSS rules applied when the viewport width is 600 pixels or less */
 @media screen and (max-width: 1024px) {
   #gallery {
