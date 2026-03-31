@@ -1,11 +1,17 @@
+<!-- Reference: https://cars.mclaren.com/gl_en/750s -->
+
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Showroom</title>
+    <!-- Link Swiper's CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.css" />
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
     <div id="hero">
         <img src="images/hero.webp" alt="">
@@ -21,8 +27,12 @@
         <div>
             <div>
                 <h1>LIGHTNESS</h1>
-                <p>Enhanced engagement. Greater performance. Refined aerodynamics. Upgraded technology...Every aspect of 750S has been scrutinised and improved. Inside and out. Our relentless search for better can be felt in each core element.</p>
-                <p>Sublime agility, nuanced feedback, exceptional comfort and usability combine to provide an uncompromised supercar that delivers the purest possible driving experience. A definitively new benchmark.</p>
+                <p>Enhanced engagement. Greater performance. Refined aerodynamics. Upgraded technology...Every aspect of
+                    750S has been scrutinised and improved. Inside and out. Our relentless search for better can be felt
+                    in each core element.</p>
+                <p>Sublime agility, nuanced feedback, exceptional comfort and usability combine to provide an
+                    uncompromised supercar that delivers the purest possible driving experience. A definitively new
+                    benchmark.</p>
             </div>
 
             <img src="https://website-images.mclaren.com/787/mclaren-750s-interior-lightness.jpg" alt="">
@@ -34,6 +44,102 @@
         </div>
     </div>
 
+    <div class="stories container">
+        <div id="stories-top-row">
+            <h2>750S STORIES</h2>
+
+            <div class="swiper-buttons">
+                <button type="button" class="carousel-arrow custom-swiper-prev" aria-label="Previous slide">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" aria-hidden="true">
+                        <path
+                            d="M.3.3a1 1 0 011.4 0L5.4 4h1.2L10.3.3a1 1 0 011.4 0 1 1 0 010 1.4L7.4 6H4.6L.3 1.7A.9.9 0 010 1 .9.9 0 01.3.3z">
+                        </path>
+                    </svg>
+                </button>
+
+                <button type="button" class="carousel-arrow custom-swiper-next" aria-label="Next slide">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" aria-hidden="true">
+                        <path
+                            d="M.3.3a1 1 0 011.4 0L5.4 4h1.2L10.3.3a1 1 0 011.4 0 1 1 0 010 1.4L7.4 6H4.6L.3 1.7A.9.9 0 010 1 .9.9 0 01.3.3z">
+                        </path>
+                    </svg>
+                </button>
+
+
+            </div>
+        </div>
+
+        <div class="swiper cars-swiper">
+            <div class="swiper-wrapper">
+                <!-- 
+                <div class="swiper-slide">Slide 1</div>
+                -->
+                <!-- <div class="swiper-slide">
+                    <img src="https://cars-assets-production.mclaren.com/2208/750s-development-stories-durability-banner.jpg" alt="">
+                    <h3>750S Development Stories - Durability</h3>
+                    <p>All over the world, from labs to real-life, teams work tirelessly to make sure every McLaren lasts a lifetime. The 750S is no exception.</p>
+                    <button>Read more</button>
+                </div> -->
+
+                <!-- <div class="swiper-slide">
+                    <img src="https://cars-assets-production.mclaren.com/2208/750s-development-stories-durability-banner.jpg" alt="">
+                    <h3>750S Development Stories - Durability</h3>
+                    <p>All over the world, from labs to real-life, teams work tirelessly to make sure every McLaren lasts a lifetime. The 750S is no exception.</p>
+                    <button>Read more</button>
+                </div>
+                <div class="swiper-slide">
+                    <img src="https://cars-assets-production.mclaren.com/2208/750s-development-stories-durability-banner.jpg" alt="">
+                    <h3>750S Development Stories - Durability</h3>
+                    <p>All over the world, from labs to real-life, teams work tirelessly to make sure every McLaren lasts a lifetime. The 750S is no exception.</p>
+                    <button>Read more</button>
+                </div>
+
+                <div class="swiper-slide">
+                    <img src="https://cars-assets-production.mclaren.com/2208/750s-development-stories-durability-banner.jpg" alt="">
+                    <h3>750S Development Stories - Durability</h3>
+                    <p>All over the world, from labs to real-life, teams work tirelessly to make sure every McLaren lasts a lifetime. The 750S is no exception.</p>
+                    <button>Read more</button>
+                </div>
+
+                <div class="swiper-slide">
+                    <img src="https://cars-assets-production.mclaren.com/2208/750s-development-stories-durability-banner.jpg" alt="">
+                    <h3>750S Development Stories - Durability</h3>
+                    <p>All over the world, from labs to real-life, teams work tirelessly to make sure every McLaren lasts a lifetime. The 750S is no exception.</p>
+                    <button>Read more</button>
+                </div>
+
+                <div class="swiper-slide">
+                    <img src="https://cars-assets-production.mclaren.com/2208/750s-development-stories-durability-banner.jpg" alt="">
+                    <h3>750S Development Stories - Durability</h3>
+                    <p>All over the world, from labs to real-life, teams work tirelessly to make sure every McLaren lasts a lifetime. The 750S is no exception.</p>
+                    <button>Read more</button>
+                </div> -->
+            </div>
+            <!-- <div class="swiper-buttons">
+                <div class="swiper-button-prev"></div>
+                <div class="swiper-button-next"></div>
+            </div> -->
+        </div>
+    </div>
+
+
     <div style="margin-bottom: 500px;"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.js"></script>
+
+    <!-- Initialize Swiper -->
+    <script>
+        var swiper = new Swiper(".cars-swiper", {
+            navigation: {
+                nextEl: ".custom-swiper-next",
+                prevEl: ".custom-swiper-prev",
+            },
+            slidesPerView: 4,
+            spaceBetween: 20,
+        });
+    </script>
+
+    <script src="showroom.js"></script>
 </body>
+
 </html>
