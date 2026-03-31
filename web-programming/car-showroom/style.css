@@ -214,3 +214,55 @@ body {
 .custom-swiper-next svg {
   transform: rotate(270deg); /* Replaces rotate-[270deg] */
 }
+
+.swiper-slide h3 {
+    min-height: 50px;
+}
+.swiper-slide p {
+    min-height: 120px;
+}
+
+.swiper-slide a {
+    text-decoration: none;
+    font-family: Noto Sans, ui-sans-serif, system-ui;
+    text-transform: uppercase;
+    color: black;
+    font-weight: 700;
+    transition: 0.2s all ease;
+    letter-spacing: 2px;
+}
+
+.swiper-slide a:hover {
+    color: rgb(243, 109, 30);
+    cursor: pointer;
+}
+
+.specification {
+    margin-top: 50px;
+    border: 1px solid red;
+
+    #speed-h1 {
+        font-size: 72px;
+        display: inline;
+    }
+
+    p {
+        display: inline;
+    }
+}
+
+#test-animation {
+    border: 2px solid red;
+    height: 300px;
+    position: relative;
+    width: 250px;
+}
+
+#filled {
+    background-color: rgb(243, 109, 30);
+    /* height: 50px; */
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    z-index: -1;
+}
