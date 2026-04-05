@@ -27,14 +27,16 @@ body {
 
 nav {
   position: sticky;
+  top: 0;
   /* top: 0;
   left: 0; */
   z-index: 99;
   display: block;
   width: 100vw;
   background-color: white;
-  /* border: 1px solid red; */
   height: 80px;
+
+  /* border: 1px solid red; */
   /* padding: 100px; */
 
   display: flex;
@@ -76,6 +78,10 @@ nav div:first-child {
     transition: opacity 0.2s ease;
   }
 }
+
+/* #links a svg {
+
+} */
 
 #links a div {
   display: flex;
