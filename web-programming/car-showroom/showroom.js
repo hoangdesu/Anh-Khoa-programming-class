@@ -117,3 +117,30 @@ observer.observe(specificationDiv);
 //         }, 5); // 1000ms = 1s
 //     }
 // });
+
+const images = [
+  "/Mclaren/IMG_7096.jpg",
+  "/Mclaren/IMG_7088.jpg",
+  "/Mclaren/IMG_7091.jpg",
+  "/Mclaren/IMG_7102.jpeg",
+  "/Mclaren/IMG_7106.jpeg",
+  "/Mclaren/IMG_7104.jpeg",
+  "/Mclaren/IMG_7120.jpg",
+  "/Mclaren/IMG_7105.jpg",
+  "/Mclaren/IMG_7099.jpg",
+  "/Mclaren/IMG_7100.jpg",
+  "/Mclaren/IMG_7097.jpeg",
+  "/Mclaren/IMG_7115.jpg",
+  "/Mclaren/IMG_6585.jpg",
+  "/Mclaren/IMG_6598.jpeg",
+  "/Mclaren/IMG_6596.jpg"
+];
+
+const imagesGallery = document.querySelector('#images-gallery');
+images.forEach(image => {
+  const img = document.createElement('img');
+
+  img.src = image;
+
+  imagesGallery.append(img);
+});
