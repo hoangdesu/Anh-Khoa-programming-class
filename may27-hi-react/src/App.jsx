@@ -41,7 +41,7 @@ function App() {
 
         <CarCard car={mclaren} inStock={false} />
         <CarCard car={ferr} inStock={true} />
-        <CarCard car={porsche} inStock={false} />
+        <CarCard car={porsche} inStock={true} />
 
       </div>
     </>
